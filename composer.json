@@ -1,0 +1,33 @@
+{
+    "name": "banzee/saas-components",
+    "description": "TODO",
+    "license": "MIT",
+    "version": "1.0.0",
+    "keywords": [
+        "banzee",
+        "design",
+        "components"
+    ],
+    "authors": [
+        {
+            "name": "Miguel Angel Moya Perona",
+            "email": "miguel@banzee.net"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Banzee\\SaasComponents\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8.0",
+         "laravel/framework": "^12.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Banzee\\SaasComponents\\SaasComponentsServiceProvider"
+            ]
+        }
+    }
+}
