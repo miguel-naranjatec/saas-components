@@ -1,0 +1,23 @@
+:root {
+
+
+    --badge-border-radius: var(--border-radius, 3px);
+    --badge-variant-primary-background: pink;
+    --badge-variant-primary-color: #FFF;
+
+
+
+    --badge-variant-default-background: pink;
+    --badge-variant-default-color: #FFF;
+
+
+
+
+
+    --badge-size-default-border-radius: 3px;
+    --badge-size-sm-border-radius: 3px;
+    --badge-size-xs-border-radius: 3px;
+
+
+
+}

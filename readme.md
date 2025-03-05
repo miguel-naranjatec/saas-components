@@ -1,5 +1,10 @@
 # Components
 
+## Usage
+
+### Publish assets
+
+php artisan vendor:publish --tag=public
 
 ## Credits
 
