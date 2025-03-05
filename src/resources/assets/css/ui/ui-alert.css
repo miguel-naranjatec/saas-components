@@ -1,0 +1,8 @@
+
+:root {
+    --alert-size-default-padding: var(--gap);
+    --alert-size-xs-padding: var(--gap);
+    --alert-size-sm-padding: var(--gap);
+    --alert-size-lg-padding: var(--gap);
+    --alert-size-xl-padding: var(--gap);
+}

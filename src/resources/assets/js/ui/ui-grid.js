@@ -2,7 +2,6 @@ class UiGrid extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
-        this.render();
     }
 
     static get observedAttributes() {
@@ -12,6 +11,10 @@ class UiGrid extends HTMLElement {
     attributeChangedCallback(name, oldValue, newValue) {
         this.render();
     }
+
+    connectedCallback() {
+		this.render();
+	}
 
     render() {
 

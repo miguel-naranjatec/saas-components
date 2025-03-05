@@ -2,24 +2,30 @@
 
 
     --button-border-radius: var(--border-radius, 3px);
+
+    --button-variant-default-background: pink;
+    --button-variant-default-color: #FFF;
+    
     --button-variant-primary-background: pink;
     --button-variant-primary-color: #FFF;
 
+    --button-variant-filled-background: pink;
+    --button-variant-filled-color: #FFF;
+    
+    --button-variant-danger-background: pink;
+    --button-variant-danger-color: #FFF;
 
+    --button-variant-ghost-background: pink;
+    --button-variant-ghost-color: #FFF;
+    
+    --button-variant-subtle-background: pink;
+    --button-variant-subtle-color: #FFF;
 
     /*
-
-       const variant = this.getAttribute("variant") || "primary";
-        const size = this.getAttribute("size") || null;
-        const disabled = this.hasAttribute("disabled");
-        const icon = this.hasAttribute("icon");
-        const icon_trailing = this.hasAttribute("icon-trailing");
-        const loading = this.hasAttribute("loading");
-        const square = this.hasAttribute("square");
+    --button-size-default-font: 
+    --button-size-xs-font: 
+    --button-size-sm-font: 
+    --button-size-lg-font: 
+    --button-size-xl-font: 
     */
-
-
-    
-
-
 }

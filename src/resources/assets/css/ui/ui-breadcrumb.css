@@ -1,3 +1,5 @@
 :root {
-    --breadcrumb-gap: var(--gap);
+    --breadcrumb-gap-default: var(--gap);
+    --breadcrumb-gap-sm: var(--gap-sm);
+    --breadcrumb-gap-xs: var(--gap-xs);
 }
