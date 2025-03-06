@@ -1,0 +1,18 @@
+:root {
+
+
+
+
+    
+    --material-symbol-default-font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    
+    
+    --material-symbol-xs-font-size: 16px;
+    --material-symbol-sm-font-size: 20px;
+    --material-symbol-default-font-size: 24px;
+    --material-symbol-lg-font-size: 32px;
+    --material-symbol-xl-font-size: 64px;
+
+
+
+}

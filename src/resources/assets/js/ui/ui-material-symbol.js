@@ -1,6 +1,11 @@
 class UiMaterialSymbol extends HTMLElement {
 
 	#version = "0.0.1";
+	#variants = ['default'];
+	#variant = "default";
+	#sizes = ["xs", "sm", "default", "lg", "xl"];
+	#size = 'default';
+	#icon;
 
 	constructor() {
 		super();
@@ -12,29 +17,47 @@ class UiMaterialSymbol extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ["name", "size", "color"];
-	}
+		return ['icon', 'size', 'variant'];
+	}	
 
-	attributeChangedCallback() {
-		this.render();
+	attributeChangedCallback(name, oldValue, newValue) {
+		if (name == 'icon') {
+			this.#icon = newValue;
+		}
+		if (name == 'size' && this.#sizes.includes(newValue)) {
+			this.#size = newValue;
+		}
+		if (name == 'variant' && this.#variants.includes(newValue)) {
+			this.#variant = newValue;
+		}
+		this.render();	
 	}
 
 	render() {
-		const name = this.getAttribute("name") || "star";
-		const size = this.getAttribute("size") || "24";
-		const color = this.getAttribute("color") || "currentColor";
-
+	
 		this.shadowRoot.innerHTML = `
         <style>
-          svg {
-            width: ${size}px;
-            height: ${size}px;
-            fill: ${color};
-          }
+			.material-symbols-outlined {
+				font-family: 'Material Symbols Outlined';
+				font-weight: normal;
+				font-style: normal;
+				font-size: var(--material-symbol-${this.#size}-font-size);
+				line-height: 1;
+				letter-spacing: normal;
+				text-transform: none;
+				display: inline-flex;
+				white-space: nowrap;
+				word-wrap: normal;
+				direction: ltr;
+				-moz-font-feature-settings: 'liga';
+				-moz-osx-font-smoothing: grayscale;
+  				font-variation-settings: var(--material-symbol-${this.#variant}-font-variation-settings);
+			}
         </style>
-        <svg viewBox="0 0 24 24">
-          <use href="#icon-${name}"></use>
-        </svg>
+		--material-symbol-${this.#size}-font-size
+
+		<span class="material-symbols-outlined">${this.#icon}</span>
+    
       `;
 	}
 }
