@@ -1,0 +1,22 @@
+:root {
+    --avatar-xs-width: 24px;
+    --avatar-xs-font-size: 10px;
+
+
+    --avatar-sm-width: 32px;
+    --avatar-xm-font-size: 14px;
+
+    --avatar-default-width: 44px;
+    --avatar-default-font-size: 16px;
+
+    --avatar-lg-width: 56px;
+    --avatar-lg-font-size: 18px;
+
+    --avatar-xl-width: 64px;
+    --avatar-xl-font-size: 20px;
+
+
+
+    --avatar-default-border-radius: var(--border-radius);
+    --avatar-rounded-border-radius: 128px;
+}

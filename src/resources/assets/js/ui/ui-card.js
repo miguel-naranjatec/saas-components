@@ -3,12 +3,16 @@ class UICard extends HTMLElement {
 	#version =  "0.0.1";
 	#gaps = ['none', 'xs', 'sm', 'default', 'lg', 'xl'];
 	#gap = 'default';
-	#variations = ['outlined'];
+	#variations = ['outlined', 'elevated'];
 	#variation = 'outlined';
 	
 	constructor() {
 		super();
 		this.attachShadow({ mode: "open" });
+	}
+
+	connectedCallback() {
+		this.render();
 	}
 
 	attributeChangedCallback(name, oldValue, newValue) {
@@ -19,10 +23,6 @@ class UICard extends HTMLElement {
 			this.#gap = newValue;
 		}
 
-		this.render();
-	}
-
-	connectedCallback() {
 		this.render();
 	}
 
