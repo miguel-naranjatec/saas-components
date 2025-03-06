@@ -1,7 +1,7 @@
 class UiMaterialSymbol extends HTMLElement {
 
 	#version = "0.0.1";
-	#variants = ['default'];
+	#variants = ["thin", "default", "thick"];
 	#variant = "default";
 	#sizes = ["xs", "sm", "default", "lg", "xl"];
 	#size = 'default';
@@ -54,10 +54,7 @@ class UiMaterialSymbol extends HTMLElement {
   				font-variation-settings: var(--material-symbol-${this.#variant}-font-variation-settings);
 			}
         </style>
-		--material-symbol-${this.#size}-font-size
-
 		<span class="material-symbols-outlined">${this.#icon}</span>
-    
       `;
 	}
 }

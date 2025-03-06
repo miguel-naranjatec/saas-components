@@ -1,6 +1,6 @@
-import reset from './../reset'
+import reset from '../reset'
 
-class UiAppContent extends HTMLElement {
+class UiApp extends HTMLElement {
 
 	#version = "0.0.1";
 	#variants = ['default'];
@@ -14,25 +14,8 @@ class UiAppContent extends HTMLElement {
 		let styles = new CSSStyleSheet();
 		styles.replaceSync(`
 			:host {
-   				display: flex;
-   				flex-direction: column;
 				position: relative;
-				height: calc(100vh - 200px);
-			
    			}
-			[header] {
-				
-				background-color: indigo;
-				padding: var(--padding);
-			}
-			[content] {
-				flex-grow: 1;
-				padding: var(--padding);
-				
-			}
-			[footer] {
-				padding: var(--padding)
-			}
 			`)
 
 		shadow.adoptedStyleSheets = [reset, styles];
@@ -55,19 +38,8 @@ class UiAppContent extends HTMLElement {
 	}
 
 	render() {
-		this.shadowRoot.innerHTML = `
-
-<div header>
-	<slot name='header'></slot>
-</div>
-<div content>
-	<slot></slot>
-</div>
-<div footer>
-	<slot name='footer'></slot>
-</div>
-`;
+		this.shadowRoot.innerHTML = `<slot></slot>`;
 	}
 }
 
-customElements.define('ui-app-content', UiAppContent);
+customElements.define('ui-app', UiApp);

@@ -1,3 +1,5 @@
+import reset from '../reset'
+
 class UISidebar extends HTMLElement {
 
 	#version = "0.0.1";
@@ -14,7 +16,11 @@ class UISidebar extends HTMLElement {
 
 	constructor() {
 		super();
-		this.attachShadow({ mode: "open" });
+		const shadow = this.attachShadow({ mode: "open" });
+
+		shadow.adoptedStyleSheets = [reset];
+		
+
 	}
 
 	connectedCallback() {

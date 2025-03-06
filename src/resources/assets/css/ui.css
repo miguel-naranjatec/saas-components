@@ -79,6 +79,8 @@
 
 body{
     font-size: var(--text-xs);
+    box-sizing: border-box;
+    margin: 0;
 }
 
 * {

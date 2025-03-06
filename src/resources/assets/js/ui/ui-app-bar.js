@@ -41,28 +41,22 @@ class UiAppBar extends HTMLElement {
     background: var(--app-bar-${this.#variant}-background);
     padding: var(--padding);
 	gap: var(--gap);
-	justi
+
 }
-[left] {
-	
+[left] {	
 	display: flex;
 	align-items: center;
 }
 [center] {
-	background-color: white;
 	flex-grow: 1;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 [right] {
-
-display: flex;
-justify-content: flex-end;
-display: flex;
-	align-items: center;
-	gap: var(--gap);
-	
+	display: flex;
+	justify-content: flex-end;
+	display: flex;align-items: center;gap: var(--gap);
 }
 </style>
 	<div left>
