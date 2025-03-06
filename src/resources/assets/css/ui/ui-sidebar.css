@@ -13,4 +13,8 @@
     --sidebar-xl-width: 600px;
    
 
+    --sidebar-default-background: orange;
+
+    --sidebar-default-padding: var(--padding);
+
 }

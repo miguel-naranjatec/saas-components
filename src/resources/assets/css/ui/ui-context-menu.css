@@ -1,0 +1,8 @@
+
+:root {
+    --context-menu-default-background: #FFF;
+    --context-menu-default-border: 1px solid #000;
+    --context-menu-default-outline: 1px solid #000;
+    --context-menu-default-outline-offset: 5px;
+
+}

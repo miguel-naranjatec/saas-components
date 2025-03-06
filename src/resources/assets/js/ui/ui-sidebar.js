@@ -5,9 +5,12 @@ class UISidebar extends HTMLElement {
 	#sides = ["left", "right"];
 	#side = "left";
 	#collapsibles = ["offcanvas", "icon", "none"]
-	#collapsible = "icon";
+	#collapsible = "none";
 	#widths = ["xs", "sm", "default", "lg", "xl"];
 	#width = "default";
+
+	#variants = ["default"];
+	#variant = "default";
 
 	constructor() {
 		super();
@@ -23,6 +26,9 @@ class UISidebar extends HTMLElement {
 	}
 
 	attributeChangedCallback(name, oldValue, newValue) {
+		if (name === 'collapsible' && this.#collapsibles.includes(newValue)) {
+			this.#collapsible = newValue;
+		}
 		if (name === 'open') {
 			this.#open = newValue === "true";
 		}
@@ -45,15 +51,14 @@ class UISidebar extends HTMLElement {
         <style>
           :host {
             position: fixed;
-            top: 0;
+            top: var(--sidebar-offset-top, 0);
+			bottom: var(--sidebar-offset-bottom, 0);
             ${this.#side}: 0;
             width: var(--sidebar-${this.#width}-width);
-            height: 100%;
-            background: #333;
-            color: white;
-           
+            background: var(--sidebar-${this.#variant}-background);
             transform: translateX(${this.#open ? "0" :this.#side === "left" ? "-100%" : "100%"});
-            transition: transform 0.3s ease;
+            transition: transform 0.3s var(--ease-in-out, ease);
+			padding: var(--sidebar-${this.#variant}-padding);
           }
           .toggle-btn {
             position: absolute;
@@ -66,11 +71,12 @@ class UISidebar extends HTMLElement {
             cursor: pointer;
           }
         </style>
-        <button class="toggle-btn">☰</button>
+		${ (this.#collapsible == 'icon') ? `<button class="toggle-btn">☰</button>` : ''  }
+        
         <slot></slot>
       `;
 
-		this.shadowRoot.querySelector(".toggle-btn").addEventListener("click", () => this.toggleSidebar());
+		//this.shadowRoot.querySelector(".toggle-btn").addEventListener("click", () => this.toggleSidebar());
 	}
 }
 

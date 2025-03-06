@@ -3,17 +3,17 @@
 
     --button-border-radius: var(--border-radius, 3px);
 
-    --button-variant-default-background: pink;
-    --button-variant-default-color: #FFF;
+    --button-default-background: pink;
+    --button-default-color: #FFF;
     
-    --button-variant-primary-background: pink;
-    --button-variant-primary-color: #FFF;
+    --button-primary-background: pink;
+    --button-primary-color: #FFF;
 
-    --button-variant-filled-background: pink;
-    --button-variant-filled-color: #FFF;
+    --button-filled-background: pink;
+    --button-filled-color: #FFF;
     
-    --button-variant-danger-background: pink;
-    --button-variant-danger-color: #FFF;
+    --button-danger-background: pink;
+    --button-danger-color: #FFF;
 
     --button-variant-ghost-background: pink;
     --button-variant-ghost-color: #FFF;
@@ -21,11 +21,9 @@
     --button-variant-subtle-background: pink;
     --button-variant-subtle-color: #FFF;
 
-    /*
-    --button-size-default-font: 
-    --button-size-xs-font: 
-    --button-size-sm-font: 
-    --button-size-lg-font: 
-    --button-size-xl-font: 
-    */
+    --button-xs-padding: var(--padding-xs);
+    --button-sm-padding: var(--padding-sm);
+    --button-default-padding: var(--padding);
+    --button-lg-padding: var(--padding-lg);
+    --button-xl-padding: var(--padding-xl);
 }

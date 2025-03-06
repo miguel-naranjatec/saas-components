@@ -1,8 +1,10 @@
 @import './ui/ui-alert.css';
+@import './ui/ui-app-bar.css';
 @import './ui/ui-avatar.css';
 @import './ui/ui-badge.css';
 @import './ui/ui-breadcrumb.css';
 @import './ui/ui-button.css';
+@import './ui/ui-context-menu.css';
 @import './ui/ui-divider.css';
 @import './ui/ui-dropdown.css';
 @import './ui/ui-flex.css';
@@ -43,6 +45,11 @@
     --gap-2xl: 40px;
     --gap-3xl: 64px;
 
+    --padding-xs: 4px;
+    --padding-sm: 8px;
+    --padding: 12px;
+    --padding-lg: 16px;
+    --padding-xl: 24px;
 
     --perspective-dramatic: 100px;
     --perspective-near: 300px;
@@ -51,8 +58,6 @@
     --perspective-distant: 1200px;
 
     --aspect-video: 16/9;
-    
-
 
     --text-xs: 0.75rem;
     --text-xs--line-height: calc(1 / 0.75);

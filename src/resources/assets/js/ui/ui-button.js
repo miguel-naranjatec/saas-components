@@ -42,20 +42,21 @@ class UiButton extends HTMLElement {
 		this.shadowRoot.innerHTML = `
         <style>
 			:host{
-				box-sizing: border-box;
+				
 			}
           	button {
 				box-sizing: border-box;
-            	display: flex;
-            	padding: 20px;
-            	border: none;
+            	display: inline-flex;
+            	
             	cursor: ${disabled ? "not-allowed" : "pointer"};
             	opacity: ${disabled ? "0.5" : "1"};
-            background-color: var(--button-variant-${this.#variant}-background);
-            color: var(--button-variant-${this.#variant}-color);
-            border-radius: var(--button-border-radius);
-
-			font: var(--button-size-${this.#size}-font);
+				background: var(--button-${this.#variant}-background);
+				color: var(--button-${this.#variant}-color);
+				border: var(--button-${this.#variant}-border);
+				outline: var(--button-${this.#variant}-outline);
+				border-radius: var(--button-${this.#size}-border-radius);
+				font: var(--button-${this.#size}-font);
+				padding: var(--button-${this.#size}-padding);
 
 
           }

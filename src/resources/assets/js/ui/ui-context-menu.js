@@ -32,6 +32,14 @@ class UIContextMenu extends HTMLElement {
 			this.removeTargetListener();
 			this.setTargetListener();
 		}
+
+		if (name == 'variant' && this.#variants.includes(newValue)) {
+			this.#variant = newValue;
+		}
+		
+
+		this.render();
+
 	}
 
 	setTargetListener() {
@@ -72,10 +80,11 @@ class UIContextMenu extends HTMLElement {
         <style>
           :host {
             position: fixed;
-            background: white;
-            border: 1px solid #ccc;
-           
-            padding: 8px;
+            background: var(--context-menu-${this.#variant}-background);
+            border: var(--context-menu-${this.#variant}-border);
+			outline: var(--context-menu-${this.#variant}-outline);
+			outline-offset: var(--context-menu-${this.#variant}-outline-offset);
+            padding: 0;
             display: none;
             z-index: 1000;
           }
