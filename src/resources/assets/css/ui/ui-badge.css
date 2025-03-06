@@ -8,15 +8,20 @@
 
 
     --badge-variant-default-background: pink;
+    --badge-variant-default-outline: 1px solid blue;
+    --badge-variant-default-outline-offset: -1px;
     --badge-variant-default-color: #FFF;
-
-
-
-
 
     --badge-size-default-border-radius: 3px;
     --badge-size-sm-border-radius: 3px;
     --badge-size-xs-border-radius: 3px;
+
+
+    --badge-size-default-padding: 4px;
+    --badge-size-sm-padding: 4px;
+    --badge-size-xs-padding: 4px;
+
+
 
 
 

@@ -1,9 +1,15 @@
 class UiButtonGroup extends HTMLElement {
+
+    #version =  "0.0.1";
+
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
-        this.render();
     }
+
+    connectedCallback() {
+		this.render();
+	}
 
     attributeChangedCallback() {
         this.render();

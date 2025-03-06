@@ -5,6 +5,10 @@ class UiIcon extends HTMLElement {
         this.render();
     }
 
+    connectedCallback() {
+      this.render();
+    }
+  
     static get observedAttributes() {
         return ["name", "size", "color"];
     }

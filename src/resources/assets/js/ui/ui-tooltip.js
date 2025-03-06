@@ -1,36 +1,43 @@
 class UiTooltip extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
-     
-        this.position = 'top';
-        this.delay = 300;
-        this.showTimeout = null;
-        this.hideTimeout = null;
-    }
 
-    static get observedAttributes() {
-        return ['content', 'position', 'delay', 'variant', 'size'];
-    }
+	#version = "0.0.1";
+	#positions = ["top", "bottom", "left", "right"];
+	#position = 'top';
+	#variants = ["top", "bottom", "left", "right"];
+	#variant = 'default';
+	#delay = 300;
 
-    attributeChangedCallback(name, oldValue, newValue) {
-        if (name === 'delay') {
-            this.delay = parseInt(newValue, 10);
-        }
-        this.render();
-    }
+	constructor() {
+		super();
+		this.attachShadow({ mode: 'open' });
+		this.position = 'top';
+		this.delay = 300;
+		this.showTimeout = null;
+		this.hideTimeout = null;
+	}
 
-    connectedCallback() {
-        this.render();
-        this.addEventListeners();
-    }
+	static get observedAttributes() {
+		return ['content', 'position', 'delay', 'variant', 'size'];
+	}
 
-    render() {
-        const content = this.getAttribute("content") || null;
-        const variant = ["default"].includes(this.getAttribute("variant")) || "default";
-        const position = ["top", "bottom", "left", "right"].includes(this.getAttribute("position")) || "top";
+	attributeChangedCallback(name, oldValue, newValue) {
+		if (name === 'delay') {
+			this.delay = parseInt(newValue, 10);
+		}
+		this.render();
+	}
 
-        this.shadowRoot.innerHTML = `
+	connectedCallback() {
+		this.render();
+		this.addEventListeners();
+	}
+
+	render() {
+		const content = this.getAttribute("content") || null;
+		const variant = ["default"].includes(this.getAttribute("variant")) || "default";
+		const position = ["top", "bottom", "left", "right"].includes(this.getAttribute("position")) || "top";
+
+		this.shadowRoot.innerHTML = `
         <style>
           .tooltip-container {
             position: relative;
@@ -85,26 +92,26 @@ class UiTooltip extends HTMLElement {
           <div class="tooltip ${position}">${content}</div>
         </div>
       `;
-    }
+	}
 
-    addEventListeners() {
-        const tooltip = this.shadowRoot.querySelector('.tooltip');
-        const tooltipContainer = this.shadowRoot.querySelector('.tooltip-container');
+	addEventListeners() {
+		const tooltip = this.shadowRoot.querySelector('.tooltip');
+		const tooltipContainer = this.shadowRoot.querySelector('.tooltip-container');
 
-        tooltipContainer.addEventListener('mouseenter', () => {
-            if (this.showTimeout) clearTimeout(this.showTimeout);
-            this.showTimeout = setTimeout(() => {
-                tooltip.classList.add('show');
-            }, this.delay);
-        });
+		tooltipContainer.addEventListener('mouseenter', () => {
+			if (this.showTimeout) clearTimeout(this.showTimeout);
+			this.showTimeout = setTimeout(() => {
+				tooltip.classList.add('show');
+			}, this.delay);
+		});
 
-        tooltipContainer.addEventListener('mouseleave', () => {
-            if (this.hideTimeout) clearTimeout(this.hideTimeout);
-            this.hideTimeout = setTimeout(() => {
-                tooltip.classList.remove('show');
-            }, 100);
-        });
-    }
+		tooltipContainer.addEventListener('mouseleave', () => {
+			if (this.hideTimeout) clearTimeout(this.hideTimeout);
+			this.hideTimeout = setTimeout(() => {
+				tooltip.classList.remove('show');
+			}, 100);
+		});
+	}
 }
 
 customElements.define('ui-tooltip', UiTooltip);

@@ -1,4 +1,6 @@
 class UISwitch extends HTMLElement {
+
+  
     static get observedAttributes() {
         return ["checked", "disabled"];
     }

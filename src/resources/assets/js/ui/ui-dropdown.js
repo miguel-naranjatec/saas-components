@@ -1,5 +1,6 @@
 class UIDropdown extends HTMLElement {
 
+	#version = "0.0.1";
 	#isOpen;
 	#position = 'bottom';
 	#positions = ['bottom', 'top', 'left', 'right'];
@@ -10,14 +11,25 @@ class UIDropdown extends HTMLElement {
 
 	constructor() {
 		super();
-		this.attachShadow({ mode: "open" });
-		this.dropdownTrigger;
-		this.dropdown;
+		this.attachShadow({ mode: "open" });	
 		document.addEventListener('click', (e) => {
 			if (!this.contains(e.target) && this.#isOpen) {
 				this.closeDropdown();
 			}
 		});
+	}
+
+	attributeChangedCallback(name, oldValue, newValue) {
+		if (name == 'position' && this.#positions.includes(newValue)) {
+			this.#position = newValue;
+		}
+
+		if (name == 'align' && this.#aligns.includes(newValue)) {
+			this.#align = newValue;
+		}
+
+		this.render();
+		this.addEventListeners();
 	}
 
 	toggleDropdown() {
@@ -48,19 +60,32 @@ class UIDropdown extends HTMLElement {
 	render() {
 		this.shadowRoot.innerHTML = `
         <style>
+		:host {
+			position: relative;
+  		}
 		[dropdown] {
-			opacity: .2;
+			position: absolute;
+			display:none;
+		}
+		[dropdown].position-bottom{
+			top: 100%;
+		}
+		[dropdown].position-top{
+			top: 0;
+			transform: translateY(-100%);
+			background: blue;
+		}
+		[dropdown].position-left{
+		}
+		[dropdown].position-right{
 		}
 		[dropdown].open {
-			opacity: 1;
+			display: flex;
+			z-index: 10;
 		}
         </style>
-		<div trigger>
-			<slot name='trigger'></slot>
-		</div>
-		<div dropdown>
-			<slot name='dropdown'></slot>
-		</div>
+		<slot trigger name='trigger'></slot>
+		<slot dropdown name='dropdown' class='position-${this.#position}'></slot>
       `;
 	}
 

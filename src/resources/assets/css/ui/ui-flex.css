@@ -1,0 +1,9 @@
+
+:root {
+    --flex-gap-none: 0px;
+    --flex-gap-xs: var(--gap-xs, 4px);
+    --flex-gap-sm: var(--gap-sm, 8px);
+    --flex-gap-default: var(--gap, 16px);
+    --flex-gap-lg: var(--gap-lg, 16px);
+    --flex-gap-lg: var(--gap-xl, 16px);
+}

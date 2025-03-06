@@ -4,6 +4,7 @@
 @import './ui/ui-button.css';
 @import './ui/ui-divider.css';
 @import './ui/ui-dropdown.css';
+@import './ui/ui-flex.css';
 @import './ui/ui-grid.css';
 @import './ui/ui-tooltip.css';
 
@@ -66,6 +67,13 @@
 
 }
 
+
+
 body{
     font-size: var(--text-xs);
+}
+
+* {
+
+    box-sizing: border-box;
 }

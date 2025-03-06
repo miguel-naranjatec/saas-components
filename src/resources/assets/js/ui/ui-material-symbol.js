@@ -1,24 +1,30 @@
 class UiMaterialSymbol extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: "open" });
-        this.render();
-    }
 
-    static get observedAttributes() {
-        return ["name", "size", "color"];
-    }
+	#version = "0.0.1";
 
-    attributeChangedCallback() {
-        this.render();
-    }
+	constructor() {
+		super();
+		this.attachShadow({ mode: "open" });
+	}
 
-    render() {
-        const name = this.getAttribute("name") || "star";
-        const size = this.getAttribute("size") || "24";
-        const color = this.getAttribute("color") || "currentColor";
+	connectedCallback() {
+		this.render();
+	}
 
-        this.shadowRoot.innerHTML = `
+	static get observedAttributes() {
+		return ["name", "size", "color"];
+	}
+
+	attributeChangedCallback() {
+		this.render();
+	}
+
+	render() {
+		const name = this.getAttribute("name") || "star";
+		const size = this.getAttribute("size") || "24";
+		const color = this.getAttribute("color") || "currentColor";
+
+		this.shadowRoot.innerHTML = `
         <style>
           svg {
             width: ${size}px;
@@ -30,6 +36,6 @@ class UiMaterialSymbol extends HTMLElement {
           <use href="#icon-${name}"></use>
         </svg>
       `;
-    }
+	}
 }
 customElements.define("ui-material-symbol", UiMaterialSymbol);

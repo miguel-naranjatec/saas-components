@@ -1,5 +1,5 @@
 class UiAlert extends HTMLElement {
-
+	#version = "0.0.1";
 	#variants = ['default', 'filled', 'outlined', 'ghost', 'subtle'];
 	#variant = 'default';
 	#sizes = ['default', 'xs', 'sm', 'lg', 'xl'];
@@ -41,7 +41,7 @@ class UiAlert extends HTMLElement {
 
 	render() {
 		const title = (this.getAttribute('title')) ?? false;
-	
+
 		this.shadowRoot.innerHTML = `
         <style>
 		.alert{
@@ -52,7 +52,7 @@ class UiAlert extends HTMLElement {
         </style>
 		<div class='alert ${this.#severity} ${this.#variant}' role='alert'>
 			<div>
-				${ (title) ? `<div class='title'>${this.title}</div>` : '' }
+				${(title) ? `<div class='title'>${this.title}</div>` : ''}
 				<slot></slot>
 			</div>
 		</div>
