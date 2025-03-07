@@ -1,5 +1,6 @@
 @import './ui/ui-alert.css';
 @import './ui/ui-app-bar.css';
+@import './ui/ui-app.css';
 @import './ui/ui-avatar.css';
 @import './ui/ui-badge.css';
 @import './ui/ui-breadcrumb.css';
@@ -72,6 +73,111 @@
     --text-3xl--line-height: calc(2.25 / 1.875);
     --text-4xl: 2.25rem;
     --text-4xl--line-height: calc(2.5 / 2.25);
+
+
+    --color-surface:var(--color-surface-overwrite, #ebe9ec);
+    --color-surface-lighter: hsl(from var(--color-surface) h s calc(l + 6));
+    --color-surface-light: hsl(from var(--color-surface) h s calc(l + 3));
+    --color-surface-dark: hsl(from var(--color-surface) h s calc(l - 3));
+    --color-surface-darker: hsl(from var(--color-surface) h s calc(l - 6));
+    --color-surface-contrast: var(--color-surface-contrast-overwrite, #12031b);
+    --color-surface-lighter-contrast: hsl(from var(--color-surface-contrast) h s calc(l + 6));
+    --color-surface-light-contrast: hsl(from var(--color-surface-contrast) h s calc(l + 3));
+    --color-surface-dark-contrast: hsl(from var(--color-surface-contrast) h s calc(l - 3));
+    --color-surface-darker-contrast: hsl(from var(--color-surface-contrast) h s calc(l - 6));
+
+    --color-surface-inverse:var(--color-surface-inverse-overwrite, #2f2844);
+    --color-surface-inverse-lighter: hsl(from var(--color-surface-inverse) h s calc(l + 6));
+    --color-surface-inverse-light: hsl(from var(--color-surface-inverse) h s calc(l + 3));
+    --color-surface-inverse-dark: hsl(from var(--color-surface-inverse) h s calc(l - 3));
+    --color-surface-inverse-darker: hsl(from var(--color-surface-inverse) h s calc(l - 6));
+    --color-surface-inverse-contrast: var(--color-surface-inverse-contrast-overwrite, #d8cef8);
+    --color-surface-inverse-lighter-contrast: hsl(from var(--color-surface-inverse-contrast) h s calc(l + 6));
+    --color-surface-inverse-light-contrast: hsl(from var(--color-surface-inverse-contrast) h s calc(l + 3));
+    --color-surface-inverse-dark-contrast: hsl(from var(--color-surface-inverse-contrast) h s calc(l - 3));
+    --color-surface-inverse-darker-contrast: hsl(from var(--color-surface-inverse-contrast) h s calc(l - 6));
+
+    --color-primary: var(--color-primary-overwrite, #645494);
+    --color-primary-lighter: hsl(from var(--color-primary) h s calc(l + 10));
+    --color-primary-light: hsl(from var(--color-primary) h s calc(l + 5));
+    --color-primary-dark: hsl(from var(--color-primary) h s calc(l - 5));
+    --color-primary-darker: hsl(from var(--color-primary) h s calc(l - 10));
+    --color-primary-contrast:var(--color-primary-contrast-overwrite, #f0ebff);
+    --color-primary-lighter-contrast: hsl(from var(--color-primary-contrast) h s calc(l + 10));
+    --color-primary-light-contrast: hsl(from var(--color-primary-contrast) h s calc(l + 5));
+    --color-primary-dark-contrast: hsl(from var(--color-primary-contrast) h s calc(l - 5));
+    --color-primary-darker-contrast: hsl(from var(--color-primary-contrast) h s calc(l - 10));
+
+    --color-secondary: var(--color-secondary-overwrite, #5d5d71);
+    --color-secondary-lighter: hsl(from var(--color-secondary) h s calc(l + 10));
+    --color-secondary-light: hsl(from var(--color-secondary) h s calc(l + 5));
+    --color-secondary-dark: hsl(from var(--color-secondary) h s calc(l - 5));
+    --color-secondary-darker: hsl(from var(--color-secondary) h s calc(l - 10));
+    --color-secondary-contrast: var(--color-secondary-contrast-overwrite, #c2c2c2);
+    --color-secondary-lighter-contrast: hsl(from var(--color-secondary-contrast) h s calc(l + 10));
+    --color-secondary-light-contrast: hsl(from var(--color-secondary-contrast) h s calc(l + 5));
+    --color-secondary-dark-contrast: hsl(from var(--color-secondary-contrast) h s calc(l - 5));
+    --color-secondary-darker-contrast: hsl(from var(--color-secondary-contrast) h s calc(l - 10));
+
+    --color-tertiary: var(--color-tertiary-overwrite, #7b498a);
+    --color-tertiary-lighter: hsl(from var(--color-tertiary) h s calc(l + 10));
+    --color-tertiary-light: hsl(from var(--color-tertiary) h s calc(l + 5));
+    --color-tertiary-dark: hsl(from var(--color-tertiary) h s calc(l - 5));
+    --color-tertiary-darker: hsl(from var(--color-tertiary) h s calc(l - 10));
+    --color-tertiary-contrast: var(--color-tertiary-contrast-overwrite, #ffffff);
+    --color-tertiary-lighter-contrast: hsl(from var(--color-tertiary-contrast) h s calc(l + 10));
+    --color-tertiary-light-contrast: hsl(from var(--color-tertiary-contrast) h s calc(l + 5));
+    --color-tertiary-dark-contrast: hsl(from var(--color-tertiary-contrast) h s calc(l - 5));
+    --color-tertiary-darker-contrast: hsl(from var(--color-tertiary-contrast) h s calc(l - 10));
+
+    --color-error: var(--color-error-overwrite, #a52c22);
+    --color-error-lighter: hsl(from var(--color-error) h s calc(l + 10));
+    --color-error-light: hsl(from var(--color-error) h s calc(l + 5));
+    --color-error-dark: hsl(from var(--color-error) h s calc(l - 5));
+    --color-error-darker: hsl(from var(--color-error) h s calc(l - 10));
+    --color-error-contrast:var(--color-error-contrast-overwrite, #e7b8b8);
+    --color-error-lighter-contrast: hsl(from var(--color-error-contrast) h s calc(l + 10));
+    --color-error-light-contrast: hsl(from var(--color-error-contrast) h s calc(l + 5));
+    --color-error-dark-contrast: hsl(from var(--color-error-contrast) h s calc(l - 5));
+    --color-error-darker-contrast: hsl(from var(--color-error-contrast) h s calc(l - 10));
+
+    --color-warning: var(--color-warning-overwrite,  #f57c00);
+    --color-warning-lighter: hsl(from var(--color-warning) h s calc(l + 10));
+    --color-warning-light: hsl(from var(--color-warning) h s calc(l + 5));
+    --color-warning-dark: hsl(from var(--color-warning) h s calc(l - 5));
+    --color-warning-darker: hsl(from var(--color-warning) h s calc(l - 10));
+    --color-warning-contrast: var(--color-warning-contrast-overwrite, #ffffff);
+    --color-warning-lighter-contrast: hsl(from var(--color-warning-contrast) h s calc(l + 10));
+    --color-warning-light-contrast: hsl(from var(--color-warning-contrast) h s calc(l + 5));
+    --color-warning-dark-contrast: hsl(from var(--color-warning-contrast) h s calc(l - 5));
+    --color-warning-darker-contrast: hsl(from var(--color-warning-contrast) h s calc(l - 10));
+
+    --color-info: var(--color-info-overwrite, #0288d1);
+    --color-info-lighter: hsl(from var(--color-info) h s calc(l + 10));
+    --color-info-light: hsl(from var(--color-info) h s calc(l + 5));
+    --color-info-dark: hsl(from var(--color-info) h s calc(l - 5));
+    --color-info-darker: hsl(from var(--color-info) h s calc(l - 10));
+    --color-info-contrast: var(--color-info-contrast-overwrite, #ffffff);
+    --color-info-lighter-contrast: hsl(from var(--color-info-contrast) h s calc(l + 10));
+    --color-info-light-contrast: hsl(from var(--color-info-contrast) h s calc(l + 5));
+    --color-info-dark-contrast: hsl(from var(--color-info-contrast) h s calc(l - 5));
+    --color-info-darker-contrast: hsl(from var(--color-info-contrast) h s calc(l - 10));
+
+    --color-success: var(--color-success-overwrite,  #388e3c);
+    --color-success-lighter: hsl(from var(--color-success) h s calc(l + 10));
+    --color-success-light: hsl(from var(--color-success) h s calc(l + 5));
+    --color-success-dark: hsl(from var(--color-success) h s calc(l - 5));
+    --color-success-darker: hsl(from var(--color-success) h s calc(l - 10));
+    --color-success-contrast: var(--color-success-contrast-overwrite,  #ffffff);
+    --color-success-lighter-contrast: hsl(from var(--color-success-contrast) h s calc(l + 10));
+    --color-success-light-contrast: hsl(from var(--color-success-contrast) h s calc(l + 5));
+    --color-success-dark-contrast: hsl(from var(--color-success-contrast) h s calc(l - 5));
+    --color-success-darker-contrast: hsl(from var(--color-success-contrast) h s calc(l - 10));
+
+    /*
+    --color-primary-overwrite: blue;
+    --color-primary-contrast-overwrite: #FFF;
+    */
 
 }
 

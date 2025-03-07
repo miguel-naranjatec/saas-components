@@ -43,7 +43,8 @@ class UiAvatar extends HTMLElement {
 		this.shadowRoot.innerHTML = `
         <style>
 		.avatar{
-			background-color: pink;
+			background-color: var(--color-primary-darker);
+			color: var(--color-primary-contrast-darker);
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;

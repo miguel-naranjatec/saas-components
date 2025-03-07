@@ -14,7 +14,7 @@ class UiApp extends HTMLElement {
 		let styles = new CSSStyleSheet();
 		styles.replaceSync(`
 			:host {
-				position: relative;
+			
    			}
 			`)
 

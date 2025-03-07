@@ -13,7 +13,8 @@
     --sidebar-xl-width: 600px;
    
 
-    --sidebar-default-background: orange;
+    --sidebar-default-background: var(--color-surface);
+    --sidebar-default-color: var(--color-surface-contrast);
 
     --sidebar-default-padding: var(--padding);
 

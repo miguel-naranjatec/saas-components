@@ -27,4 +27,5 @@ import "./ui/ui-sidebar";
 import "./ui/ui-spinner";
 import "./ui/ui-stepper";
 import "./ui/ui-switch";
+import "./ui/ui-theme-colors";
 import "./ui/ui-tooltip";

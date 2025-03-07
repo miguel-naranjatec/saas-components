@@ -1,3 +1,4 @@
 :root{
-    --app-bar-default-background: green;
+
+    --app-bar-default-background: var(--color-surface-ligth);
 }

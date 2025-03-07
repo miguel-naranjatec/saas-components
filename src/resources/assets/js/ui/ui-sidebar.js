@@ -62,6 +62,7 @@ class UISidebar extends HTMLElement {
             ${this.#side}: 0;
             width: var(--sidebar-${this.#width}-width);
             background: var(--sidebar-${this.#variant}-background);
+			color: var(--sidebar-${this.#variant}-color);
             transform: translateX(${this.#open ? "0" :this.#side === "left" ? "-100%" : "100%"});
             transition: transform 0.3s var(--ease-in-out, ease);
 			padding: var(--sidebar-${this.#variant}-padding);
