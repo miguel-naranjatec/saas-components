@@ -28,6 +28,9 @@ class UiRepeater extends HTMLElement {
 	constructor() {
 		super();
 		const shadow = this.attachShadow({ mode: "open" });
+		if (Object.keys(this.#languages).includes(document.documentElement.lang)){
+			this.#language = document.documentElement.lang;
+		}
 		let styles = new CSSStyleSheet();
 		styles.replaceSync(`
 			:host {
