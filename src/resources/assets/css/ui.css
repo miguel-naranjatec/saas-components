@@ -173,12 +173,6 @@
     --color-success-light-contrast: hsl(from var(--color-success-contrast) h s calc(l + 5));
     --color-success-dark-contrast: hsl(from var(--color-success-contrast) h s calc(l - 5));
     --color-success-darker-contrast: hsl(from var(--color-success-contrast) h s calc(l - 10));
-
-    /*
-    --color-primary-overwrite: blue;
-    --color-primary-contrast-overwrite: #FFF;
-    */
-
 }
 
 
@@ -187,6 +181,7 @@ body{
     font-size: var(--text-xs);
     box-sizing: border-box;
     margin: 0;
+    font-family: "SUSE", sans-serif;
 }
 
 * {

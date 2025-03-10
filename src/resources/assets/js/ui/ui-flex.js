@@ -1,8 +1,8 @@
 class UIFlex extends HTMLElement {
 
 	#version = "0.0.1";
-	#direction = 'row';
 	#directions = ['row', 'row-reverse', 'column', 'column-reverse']
+	#direction = 'row';
 	#gaps = ['none', 'xs', 'sm', 'default', 'lg', 'xl'];
 	#gap = 'default';
 		

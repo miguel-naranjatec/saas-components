@@ -23,6 +23,7 @@ import "./ui/ui-grid";
 import "./ui/ui-icon";
 import "./ui/ui-list";
 import "./ui/ui-material-symbol";
+import "./ui/ui-repeater";
 import "./ui/ui-sidebar";
 import "./ui/ui-spinner";
 import "./ui/ui-stepper";

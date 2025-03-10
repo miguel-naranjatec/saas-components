@@ -22,16 +22,22 @@ class UiAppContent extends HTMLElement {
    			}
 			[header] {
 				
-				background-color: indigo;
+				background-color: var(--color-surface);
+				color: var(--color-surface-contrast);
 				padding: var(--padding);
 			}
 			[content] {
 				flex-grow: 1;
 				padding: var(--padding);
+
+				background-color: var(--color-surface-lighter);
+				color: var(--color-surface-lighter-contrast);
 				
 			}
 			[footer] {
-				padding: var(--padding)
+				padding: var(--padding);
+					background-color: var(--color-surface);
+				color: var(--color-surface-contrast);
 			}
 			`)
 

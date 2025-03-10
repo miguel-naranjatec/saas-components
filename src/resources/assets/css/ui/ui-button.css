@@ -3,17 +3,17 @@
 
     --button-border-radius: var(--border-radius, 3px);
 
-    --button-default-background: pink;
-    --button-default-color: #FFF;
+    --button-default-background: var(--color-secondary);
+    --button-default-color: var(--color-secondary-contrast);
     
-    --button-primary-background: pink;
-    --button-primary-color: #FFF;
+    --button-primary-background: var(--color-primary);
+    --button-primary-color: var(--color-primary-contrast);
 
     --button-filled-background: pink;
     --button-filled-color: #FFF;
     
-    --button-danger-background: pink;
-    --button-danger-color: #FFF;
+    --button-danger-background:var(--color-danger);
+    --button-danger-color: var(--color-danger-contrast);
 
     --button-variant-ghost-background: pink;
     --button-variant-ghost-color: #FFF;
