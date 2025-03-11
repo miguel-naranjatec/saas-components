@@ -4,7 +4,7 @@ class UiStepper extends HTMLElement {
     #currentStep = 0;
     #steps;
     #variants = ["default"];
-	#variant = 'default';
+	  #variant = 'default';
 
     constructor() {
         super();

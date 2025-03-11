@@ -12,6 +12,7 @@
 @import './ui/ui-grid.css';
 @import './ui/ui-material-symbols.css';
 @import './ui/ui-sidebar.css';
+@import './ui/ui-switch.css';
 @import './ui/ui-tooltip.css';
 
 
@@ -26,6 +27,12 @@
     --font-weight-thin: 100;
     --font-weight-extralight: 200;
     --font-weight-light: 300;
+
+
+    --transition-fast-duration: .1s;
+    --transition-duration: .2s;
+    --transition-slow-duration: .3s;
+
 
     --ease-in: cubic-bezier(.4,0,1,1);
     --ease-out: cubic-bezier(0,0,.2,1);

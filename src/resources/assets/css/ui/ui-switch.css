@@ -1,0 +1,47 @@
+:root {
+
+    --switch-aspect-ratio: 2;
+
+    --switch-xs-height: 16px;
+    --switch-xs-border-radius: 16px;
+    --switch-xs-padding: 2px;
+   
+
+
+    --switch-sm-height: 20px;
+    --switch-sm-border-radius: 20px;
+    --switch-sm-padding: 2px;
+
+
+
+    --switch-default-height: 24px;
+    --switch-default-border-radius: 24px;
+    --switch-default-padding: 3px;
+
+
+
+    --switch-lg-height: 28px;
+    --switch-lg-border-radius: 28px;
+    --switch-lg-padding: 3px;
+
+    --switch-xl-height: 32px;
+    --switch-xl-border-radius: 32px;
+    --switch-xl-padding: 4px;
+
+
+
+    --switch-default-background: var(--color-surface);
+    --switch-handle-default-background: var(--color-surface-darker);
+    --switch-checked-default-background: var(--color-success);
+    --switch-checked-handle-default-background: var(--color-success-contrast);
+    --switch-focus-handle-default-outline: 6px solid hsl(from var(--color-surface-contrast) h s l / 0.5);
+
+
+
+
+
+
+
+
+
+}

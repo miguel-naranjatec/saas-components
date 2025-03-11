@@ -1,4 +1,6 @@
 class UiSelect extends HTMLElement {
+	
+	// TODO disabled
 
 	#version = "0.0.1";
 	#variants = ['default'];
@@ -87,7 +89,7 @@ class UiSelect extends HTMLElement {
 		const elements = this.shadowRoot.querySelector('#holder-slot slot').assignedElements({ flatten: true });
 		this.#data = [];
 		if (elements.length) {
-			//only option && optiongroup
+
 			elements.forEach(element => {
 				if (element.nodeName == 'OPTION') {
 					let obj = {

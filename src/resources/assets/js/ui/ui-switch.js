@@ -1,75 +1,122 @@
 class UISwitch extends HTMLElement {
 
-  
-    static get observedAttributes() {
-        return ["checked", "disabled"];
-    }
+	#version = "0.0.2";
+	#styles = new CSSStyleSheet();
+	#variants = ["default"];
+	#variant = 'default';
+	#sizes = ["xs", "sm", "default", "lg", "xl"];
+	#size = 'default';
+	#checked = false;
+	#disabled = false;
+	#name;
 
-    constructor() {
-        super();
-        this.attachShadow({ mode: "open" });
-        this.checked = this.hasAttribute("checked"); // Estado inicial
-        this.disabled = this.hasAttribute("disabled");
-        this.render();
-    }
+	constructor() {
+		super();
+		this.attachShadow({ mode: "open" });
+		this.internals = this.attachInternals();
+		if (this.#variants.includes(document.documentElement.getAttribute('ui-variant'))){
+			this.#variant = document.documentElement.getAttribute('ui-variant');
+		}
+	}
 
-    connectedCallback() {
-        this.shadowRoot.querySelector(".switch").addEventListener("click", () => this.toggleSwitch());
-    }
+	static get observedAttributes() {
+		return ["checked", "disabled", "variant", "size", "name"];
+	}
 
-    attributeChangedCallback(name, oldValue, newValue) {
-        if (name === "checked") {
-            this.checked = this.hasAttribute("checked");
-        }
-        if (name === "disabled") {
-            this.disabled = this.hasAttribute("disabled");
-        }
-        this.render();
-    }
+	connectedCallback() {
+		this.render();
+		this.addEventListener("click", () => {
+			this.internals.setFormValue("1");
+			this.dispatchEvent(new Event("change"));
+		});
+	}
+	
+	get checked() {
+		return this.#checked;
+	}
+	
+	set checked(value) {
+		this.#checked = Boolean(value);
+	}
 
-    toggleSwitch() {
-        if (this.disabled) return;
+	static get formAssociated() {
+		return true;
+	}
 
-        this.checked = !this.checked;
-        this.setAttribute("checked", this.checked ? "" : null);
-        this.dispatchEvent(new CustomEvent("change", { detail: { checked: this.checked } }));
-        this.render();
-    }
+	attributeChangedCallback(name, oldValue, newValue) {
+		if (name === "checked") {
+			this.#checked = this.hasAttribute("checked");
+		}
+		if (name === "disabled") {
+			this.#disabled = this.hasAttribute("disabled");
+		}
+		if (name === "variant" && this.#variants.includes(this.#variant)) {
+			this.#variant = newValue
+		}
+		if (name === "size" && this.#sizes.includes(this.#size)) {
+			this.#size = newValue;
+		}
+		if (name === "name") {
+			this.#name = newValue;
+		}
 
-    render() {
-        const switchColor = this.checked ? "var(--switch-active-color, #4caf50)" : "var(--switch-inactive-color, #ccc)";
-        const handleColor = this.checked ? "var(--switch-handle-active, #fff)" : "var(--switch-handle-inactive, #fff)";
-        const disabledOpacity = this.disabled ? "0.5" : "1";
+		this.render();
+	}
 
-        this.shadowRoot.innerHTML = `
-        <style>
-          .switch {
-            width: 50px;
-            height: 24px;
-            background-color: ${switchColor};
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            padding: 2px;
-            cursor: ${this.disabled ? "not-allowed" : "pointer"};
-            opacity: ${disabledOpacity};
-            transition: background-color 0.3s ease;
-          }
-  
-          .handle {
-            width: 20px;
-            height: 20px;
-            background-color: ${handleColor};
-            border-radius: 50%;
-            transition: transform 0.3s ease;
-            transform: translateX(${this.checked ? "26px" : "0px"});
-          }
-        </style>
-        <div class="switch" role="switch" aria-checked="${this.checked}">
-          <div class="handle"></div>
-        </div>
-      `;
-    }
+	render() {
+		this.#styles.replaceSync(`
+			#checkbox{
+				clip: rect(0 0 0 0); 
+				clip-path: inset(50%);
+				height: 1px;
+				overflow: hidden;
+				position: absolute;
+				white-space: nowrap; 
+				width: 1px;
+			}
+			.switch {
+		  		aspect-ratio:  var(--switch-aspect-ratio);
+            	height: var(--switch-${this.#size}-height);	
+            	border-radius:  var(--switch-${this.#size}-border-radius);
+            	background: var(--switch-${this.#variant}-background);
+            	display: inline-flex;
+            	align-items: center;
+            	transition: background-color 0.3s ease;
+				position: relative;
+				transition: all var(--transition-fast-duration) var(--ease-in-out);
+				cursor: pointer;
+          	}
+			.handle {
+				position: absolute;
+				aspect-ratio: 1;
+            	height: calc(var(--switch-${this.#size}-height) - var(--switch-${this.#size}-padding) * 2);
+            	background-color: var(--switch-handle-${this.#variant}-background);
+            	border-radius: 50%;
+            	transition: all var(--transition-fast-duration) var(--ease-in-out);
+				left: var(--switch-${this.#size}-padding);
+          	}
+			#checkbox:checked + .switch {
+				background: var(--switch-checked-${this.#variant}-background);
+			}
+			#checkbox:checked + .switch > .handle {
+				background: var(--switch-checked-handle-${this.#variant}-background);
+				transform: translateX(calc(var(--switch-${this.#size}-height) * var(--switch-aspect-ratio) - var(--switch-${this.#size}-height) ) );
+			}
+			#checkbox:focus + .switch > .handle{
+				outline: var(--switch-focus-handle-${this.#variant}-outline);
+			}
+		`)
+
+		this.shadowRoot.adoptedStyleSheets = [this.#styles];
+		let disabled = (this.#disabled) ? "disabled" : "";
+		let checked = (this.#checked) ? "checked" : "";
+		this.shadowRoot.innerHTML = `<label>
+			<input name=${this.#name}  ${disabled} ${checked} id='checkbox' type='checkbox' />
+			<div class="switch" role="switch" aria-checked="${this.#checked}">
+				<div class="handle"></div>
+			</div>
+		</label>`;
+	}
 }
 
 customElements.define("ui-switch", UISwitch);
