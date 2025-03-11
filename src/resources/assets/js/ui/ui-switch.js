@@ -34,7 +34,7 @@ class UISwitch extends HTMLElement {
 	get checked() {
 		return this.#checked;
 	}
-	
+
 	set checked(value) {
 		this.#checked = Boolean(value);
 	}
@@ -65,6 +65,12 @@ class UISwitch extends HTMLElement {
 
 	render() {
 		this.#styles.replaceSync(`
+			#label {
+			display: flex;
+			align-items: center;
+			gap: var(--gap);
+
+			}
 			#checkbox{
 				clip: rect(0 0 0 0); 
 				clip-path: inset(50%);
@@ -110,10 +116,13 @@ class UISwitch extends HTMLElement {
 		this.shadowRoot.adoptedStyleSheets = [this.#styles];
 		let disabled = (this.#disabled) ? "disabled" : "";
 		let checked = (this.#checked) ? "checked" : "";
-		this.shadowRoot.innerHTML = `<label>
+		this.shadowRoot.innerHTML = `<label id='label'>
 			<input name=${this.#name}  ${disabled} ${checked} id='checkbox' type='checkbox' />
 			<div class="switch" role="switch" aria-checked="${this.#checked}">
 				<div class="handle"></div>
+			</div>
+			<div class='info'>
+				<slot><slot>
 			</div>
 		</label>`;
 	}

@@ -27,6 +27,7 @@ import "./ui/ui-repeater";
 import "./ui/ui-select";
 import "./ui/ui-sidebar";
 import "./ui/ui-spinner";
+import "./ui/ui-status";
 import "./ui/ui-stepper";
 import "./ui/ui-switch";
 import "./ui/ui-theme-colors";
