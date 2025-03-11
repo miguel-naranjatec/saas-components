@@ -1,0 +1,22 @@
+:root {
+
+    
+    --progress-bar-thinner-size: 1px;
+    --progress-bar-thin-size: 4px;
+    --progress-bar-default-size: 8px;
+    --progress-bar-thick-size: 12px;
+    --progress-bar-thicker-size: 16px;
+
+
+    --progress-bar-default-background: var(--color-surface);
+    --progress-bar-track-default-background: var(--color-primary);
+
+    --progress-bar-positive-background: var(--color-surface);
+    --progress-bar-track-positive-background: var(--color-success);
+
+    --progress-bar-notice-background: var(--color-surface);
+    --progress-bar-track-notice-background: var(--color-warning);
+
+    --progress-bar-negative-background: var(--color-error);
+    --progress-bar-track-negative-background: var(--color-error);
+}

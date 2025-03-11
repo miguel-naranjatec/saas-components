@@ -23,6 +23,7 @@ import "./ui/ui-grid";
 import "./ui/ui-icon";
 import "./ui/ui-list";
 import "./ui/ui-material-symbol";
+import "./ui/ui-progress-bar";
 import "./ui/ui-repeater";
 import "./ui/ui-select";
 import "./ui/ui-sidebar";
