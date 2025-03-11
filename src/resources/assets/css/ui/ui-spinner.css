@@ -1,0 +1,26 @@
+:root {
+
+    
+    --spinner-xs-width: 12px;
+    --spinner-sm-width: 16px;
+    --spinner-default-width: 24px;
+    --spinner-lg-width: 24px;
+    --spinner-xl-width: 32px;
+
+
+    --spinner-thinner-border-width: 1px;
+    --spinner-thin-border-width: 2px;
+    --spinner-default-border-width: 4px;
+    --spinner-thick-border-width: 6px;
+    --spinner-thicker-border-width: 8px;
+
+
+    --spinner-fast-duration: .3s;
+    --spinner-default-duration: .5s;
+    --spinner-slow-duration: 1s;
+
+
+
+
+
+}

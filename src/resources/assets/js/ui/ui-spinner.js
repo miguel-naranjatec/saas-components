@@ -1,6 +1,7 @@
 class UiSpinner extends HTMLElement {
 
-	#version = "0.0.1";
+	#version = "0.0.2";
+	#styles = new CSSStyleSheet();
 	#sizes = ["xs", "sm", "default", "lg", "xl"];
 	#size = "default";
 	#thicknesses = ["thinner", "thin", "default", "thick", "thicker"];
@@ -35,23 +36,26 @@ class UiSpinner extends HTMLElement {
 	}
 
 	render() {
-		this.shadowRoot.innerHTML = `
-        <style>
+
+
+		this.#styles.replaceSync(`
 			.spinner {
-				width: var(--spiner-${size}-width);
-				height: var(--spiner-${size}-width);
-				border: var(--spinner-${thickness}-border-width) solid rgba(0, 0, 0, 0.1);
-				border-top: var(--spinner-${thickness}-border-width) solid #000;
+				display: inline-flex;
+				width: var(--spinner-${this.#size}-width);
+				height: var(--spinner-${this.#size}-width);
+				border: var(--spinner-${this.#thickness}-border-width) solid rgba(0, 0, 0, 0.1);
+				border-top: var(--spinner-${this.#thickness}-border-width) solid var(--color-primary);
 				border-radius: 50%;
-				animation: spin var(--spinner-${speed}-duration) linear infinite;
+				animation: spin var(--spinner-${this.#speed}-duration) linear infinite;
 			}
 			@keyframes spin {
             	0% { transform: rotate(0deg); }
             	100% { transform: rotate(360deg); }
           	}
-        </style>
-        <div class="spinner"></div>
-      `;
+		`);
+
+		this.shadowRoot.adoptedStyleSheets = [this.#styles];
+		this.shadowRoot.innerHTML = `<div class="spinner" role="progressbar"></div>`;
 	}
 }
 customElements.define("ui-spinner", UiSpinner);
