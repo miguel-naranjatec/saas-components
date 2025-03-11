@@ -36,8 +36,6 @@ class UiSpinner extends HTMLElement {
 	}
 
 	render() {
-
-
 		this.#styles.replaceSync(`
 			.spinner {
 				display: inline-flex;
