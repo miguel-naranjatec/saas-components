@@ -1,17 +1,18 @@
 class UiStatus extends HTMLElement {
 
+	//TODO 
+
 	#version = "0.0.1";
 	#styles = new CSSStyleSheet();
 	#variants = ["default"];
 	#variant = 'default';
-	#name = "status";
 	#options = [];
 	#optionsContainer;
 	#checked;
 
 	constructor() {
 		super();
-		this.attachShadow({ mode: "open" });
+		this.attachShadow({ mode: "open", delegatesFocus: true });
 		this.internals = this.attachInternals();
 		if (this.#variants.includes(document.documentElement.getAttribute('ui-variant'))) {
 			this.#variant = document.documentElement.getAttribute('ui-variant');
@@ -19,19 +20,11 @@ class UiStatus extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ["name", "options", "checked"];
+		return ["options", "checked"];
 	}
 
 	connectedCallback() {
 		this.render();
-	}
-
-	get checked() {
-		return this.#checked;
-	}
-
-	set checked(value) {
-		this.#checked = value;
 	}
 
 	static get formAssociated() {
@@ -39,15 +32,14 @@ class UiStatus extends HTMLElement {
 	}
 
 	attributeChangedCallback(name, oldValue, newValue) {
-		if (name == 'name') {
-			this.#name = newValue;
-		}
+	
 		if (name == 'options') {
 			this.#options = JSON.parse(this.getAttribute("options") || "[]");
 		}
 
 		if (name == 'checked'){
 			this.#checked = newValue;	
+			this.internals.setFormValue(this.#checked);
 		}
 
 		this.render();
@@ -60,7 +52,7 @@ class UiStatus extends HTMLElement {
 			const div = document.createElement("label");
 			div.classList.add("option");
 			const checked = (option.value == this.#checked) ? "checked" : "";
-			div.innerHTML = `<input type='radio' ${checked} name='${this.#name}' value='${option.value}' /><div class='label'>${option.label}</div>`;
+			div.innerHTML = `<input type='radio' ${checked} name='${this.name}' value='${option.value}' /><div class='label'>${option.label}</div>`;
 			this.#optionsContainer.appendChild(div);
 			
 		});
@@ -99,13 +91,15 @@ class UiStatus extends HTMLElement {
 				background-color: pink;
 			}
 
+			#optionsContainer > label > input[type=radio]:focus + .label {
+				outline: 2px solid blue;
+			}
+
 		`);
 
 		this.shadowRoot.adoptedStyleSheets = [this.#styles];
-		this.shadowRoot.innerHTML = `Todo <div id='optionsContainer'></div>`;
-
+		this.shadowRoot.innerHTML = `<div id='optionsContainer'></div>`;
 		this.#optionsContainer = this.shadowRoot.querySelector("#optionsContainer");
-
 		this.renderOptions();
 	}
 }
