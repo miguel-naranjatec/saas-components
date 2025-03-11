@@ -1,0 +1,21 @@
+:root {
+
+    --status-light-xs-width: 6px;
+    --status-light-sm-width: 8px;
+    --status-light-default-width: 10px;
+    --status-light-lg-width: 12px;
+    --status-light-xl-width: 14px;
+
+    --status-light-xs-gap: 6px;
+    --status-light-sm-gap: 8px;
+    --status-light-default-gap: 10px;
+    --status-light-lg-gap: 12px;
+    --status-light-xl-gap: 14px;
+
+    --status-light-default-background: var(--color-primary);
+    --status-light-positive-background: var(--color-success);
+    --status-light-negative-background: var(--color-error);
+    --status-light-notice-background: var(--color-warning);
+    --status-light-info-background: var(--color-info);
+    --status-light-neutral-background: var(--color-secondary);
+}
