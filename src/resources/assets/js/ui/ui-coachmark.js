@@ -1,10 +1,6 @@
 class UiCoachmark extends HTMLElement {
 	//https://opensource.adobe.com/spectrum-web-components/components/coachmark/
-
-	// TODO Add functionality to buttons 
-	// TODO Add closable
-	// TODO Add events
-
+	
 	#version = "0.0.1";
 	#styles = new CSSStyleSheet();
 	#variants = ['default'];
@@ -27,11 +23,13 @@ class UiCoachmark extends HTMLElement {
 	#languages = {
 		"en": {
 			previous: 'Previous',
-			next: 'Next'
+			next: 'Next',
+			skip: 'Skip'
 		},
 		"es": {
-			previous: 'Previous',
-			next: 'Next'
+			previous: 'Anterior',
+			next: 'Siguiente',
+			skip: 'Omitir'
 		}
 	}
 	#language = "en";
@@ -55,35 +53,55 @@ class UiCoachmark extends HTMLElement {
 		this.handleScroll = () => { this.#placementElement() };
 		window.addEventListener('scroll', this.handleScroll);
 		this.shadowRoot.addEventListener('click', (e) => {
-
 			if (e.target.matches('[next]')) {
 				this.#next();
 				e.preventDefault();
 			}
 
 			if (e.target.matches('[previous]')) {
-				alert('previous');
+				this.#previous();
 				e.preventDefault();
 			}
 
 			if (e.target.matches('[skip]')) {
+				this.#skip();
 				e.preventDefault();
 			}
 		});
 	}
 
+	#skip() {
+		this.removeAttribute('active');
+		this.dispatchEvent(new CustomEvent("skip"));
+	}
+
 	#next() {
 		let items = Array.from(document.querySelectorAll('ui-coachmark[step]'))
 			.sort(function (a, b) {
-				parseInt(a.getAttribute('step')) - parseInt(b.getAttribute('step'));
+				return parseInt(a.getAttribute('step')) - parseInt(b.getAttribute('step'));
 			}).filter((item) => {
 				return (parseInt(item.getAttribute('step')) > this.#step);
 			});
 
 		if (items[0]){
 			this.removeAttribute('active');
-			this.render();
 			items[0].setAttribute('active', 'true');
+			this.dispatchEvent(new CustomEvent("change"));
+		}
+	}
+
+	#previous () {
+		let items = Array.from(document.querySelectorAll('ui-coachmark[step]'))
+			.sort(function (a, b) {
+				return parseInt(b.getAttribute('step')) - parseInt(a.getAttribute('step'));
+			}).filter((item) => {
+				return (parseInt(item.getAttribute('step')) < this.#step);
+			});
+
+		if (items[0]){
+			this.removeAttribute('active');
+			items[0].setAttribute('active', 'true');
+			this.dispatchEvent(new CustomEvent("change"));
 		}
 	}
 
@@ -144,14 +162,14 @@ class UiCoachmark extends HTMLElement {
 		const title = (this.#title) ? `${this.#title}` : '';
 		this.shadowRoot.innerHTML = `
         <div id='coachmark' ${(this.#element) ? 'has-element' : ''}  >
-            <slot id='media'></slot>
-            ${title}
+            <slot name='media'></slot>
+            <div>${title}</div>
             <slot></slot>
-            <div>
-				
+            <ui-flex>
 				<ui-button previous >${this.#languages[this.#language].previous}</ui-button>
 				<ui-button next >${this.#languages[this.#language].next}</ui-button>
-			</div>
+				<ui-button skip >${this.#languages[this.#language].skip}</ui-button>
+			</ui-flex>
         </div>
         `;
 
@@ -210,3 +228,4 @@ class UiCoachmark extends HTMLElement {
 }
 
 customElements.define('ui-coachmark', UiCoachmark);
+
