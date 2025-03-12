@@ -1,7 +1,10 @@
 class UiCoachmark extends HTMLElement {
 	//https://opensource.adobe.com/spectrum-web-components/components/coachmark/
 	
-	#version = "0.0.1";
+
+	// TODO save position in cache?
+
+	#version = "0.0.2";
 	#styles = new CSSStyleSheet();
 	#variants = ['default'];
 	#variant = 'default';

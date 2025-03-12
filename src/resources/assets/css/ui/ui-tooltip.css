@@ -1,6 +1,9 @@
 :root {
 
-    --tooltip-variant-default-background: #000;
-    --tooltip-variant-default-color: #FFF;
+    --tooltip-variant-default-background: var(--color-surface-inverse);
+    --tooltip-variant-default-color: var(--color-surface-inverse-contrast);
+    --tooltip-variant-default-padding: var(--padding-sm);
+    --tooltip-variant-default-border-radius: var(--border-radius-sm);
+    
 
 }

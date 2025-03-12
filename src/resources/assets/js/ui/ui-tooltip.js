@@ -1,116 +1,146 @@
 class UiTooltip extends HTMLElement {
-
-	#version = "0.0.1";
-	#positions = ["top", "bottom", "left", "right"];
-	#position = 'top';
-	#variants = ["top", "bottom", "left", "right"];
+	#version = "0.0.2";
+	#styles = new CSSStyleSheet();
+	#placements = [
+		'top',
+		'top-left', 'left-top',
+		'top-right', 'right-top',
+		'bottom',
+		'bottom-left', 'left-bottom',
+		'bottom-right', 'right-bottom',
+		'right',
+		'left'
+	]
+	#placement = 'top';
+	#variants = ["default"];
 	#variant = 'default';
-	#delay = 300;
+	#delay = 500;
+	#content;
+	#tooltip_element;
+	#parent_element;
+	#showTimeout = null;
+	#hideTimeout = null;
 
 	constructor() {
 		super();
 		this.attachShadow({ mode: 'open' });
-		this.position = 'top';
-		this.delay = 300;
-		this.showTimeout = null;
-		this.hideTimeout = null;
 	}
 
 	static get observedAttributes() {
-		return ['content', 'position', 'delay', 'variant', 'size'];
+		return ['content', 'delay', 'variant', 'placement'];
 	}
 
 	attributeChangedCallback(name, oldValue, newValue) {
+		if (name == 'content') {
+			this.#content = newValue;
+		}
+		if (name == 'placement' && this.#placements.includes(newValue)) {
+			this.#placement = newValue;
+		}
 		if (name === 'delay') {
-			this.delay = parseInt(newValue, 10);
+			this.#delay = parseInt(newValue, 10);
+		}
+		if (name == 'variant' && this.#variants.includes(newValue)) {
+			this.#variant = newValue;
 		}
 		this.render();
 	}
 
 	connectedCallback() {
 		this.render();
-		this.addEventListeners();
+		this.handleResize = () => { this.#placementElement() };
+		window.addEventListener('resize', this.handleResize);
+		this.handleScroll = () => { this.#placementElement() };
+		window.addEventListener('scroll', this.handleScroll);
+		this.addEventListener('mouseenter', () => {
+			if (this.#showTimeout) clearTimeout(this.#showTimeout);
+			this.#showTimeout = setTimeout(() => {
+				this.#tooltip_element.classList.add('show');
+			}, this.#delay);
+		});
+		this.addEventListener('mouseleave', () => {
+			if (this.#hideTimeout) clearTimeout(this.#hideTimeout);
+			this.#hideTimeout = setTimeout(() => {
+				this.#tooltip_element.classList.remove('show');
+			}, this.#delay);
+		});
+	}
+
+	disconnectedCallback() {
+		window.removeEventListener('resize', this.handleResize);
+		window.removeEventListener('scroll', this.handleScroll);
 	}
 
 	render() {
-		const content = this.getAttribute("content") || null;
-		const variant = ["default"].includes(this.getAttribute("variant")) || "default";
-		const position = ["top", "bottom", "left", "right"].includes(this.getAttribute("position")) || "top";
-
-		this.shadowRoot.innerHTML = `
-        <style>
-          .tooltip-container {
-            position: relative;
-            display: inline-block;
-          }
-  
-          .tooltip {
-            position: absolute;
-            visibility: hidden;
-            background-color: var(--tooltip-variant-${variant}-background);
-            color: var(--tooltip-variant-${variant}-color);
-            text-align: center;
-            border-radius: 4px;
-            padding: 8px;
-            font-size: 12px;
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-          }
-  
-          .tooltip.show {
-            visibility: visible;
-            opacity: 1;
-          }
-          .tooltip.top {
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            margin-bottom: 8px;
-          }
-          .tooltip.bottom {
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            margin-top: 8px;
-          }
-          .tooltip.left {
-            top: 50%;
-            right: 100%;
-            transform: translateY(-50%);
-            margin-right: 8px;
-          }
-          .tooltip.right {
-            top: 50%;
-            left: 100%;
-            transform: translateY(-50%);
-            margin-left: 8px;
-          }
-        </style>
-        <div class="tooltip-container">
-          <slot></slot>
-          <div class="tooltip ${position}">${content}</div>
-        </div>
-      `;
+		this.#styles.replaceSync(`
+			#parent{
+				display: inline-flex;	
+			}
+			#tooltip {
+            	position: fixed;
+				top: 0;
+				left: 0;
+            	background-color: var(--tooltip-variant-${this.#variant}-background);
+            	color: var(--tooltip-variant-${this.#variant}-color);
+            	padding: var(--tooltip-variant-${this.#variant}-padding);
+				border-radius: var(--tooltip-variant-${this.#variant}-border-radius);
+            	z-index: var(--z-index-max);
+				opacity: 0;
+				transition: opacity 0.3s ease;
+				pointer-events:none;
+				visibility: hidden;
+          	}
+			#tooltip.show {
+				visibility: visible;
+            	opacity: 1;
+			}
+		`);
+		this.shadowRoot.adoptedStyleSheets = [this.#styles];
+		this.shadowRoot.innerHTML = `<div id='parent'><slot></slot></div><div id='tooltip'>${this.#content}</div>`;
+		this.#tooltip_element = this.shadowRoot.querySelector('#tooltip');
+		this.#parent_element = this.shadowRoot.querySelector('#parent');
+		this.#placementElement();
+		setTimeout(function () { this.#placementElement(); }.bind(this), 100);
 	}
 
-	addEventListeners() {
-		const tooltip = this.shadowRoot.querySelector('.tooltip');
-		const tooltipContainer = this.shadowRoot.querySelector('.tooltip-container');
-
-		tooltipContainer.addEventListener('mouseenter', () => {
-			if (this.showTimeout) clearTimeout(this.showTimeout);
-			this.showTimeout = setTimeout(() => {
-				tooltip.classList.add('show');
-			}, this.delay);
-		});
-
-		tooltipContainer.addEventListener('mouseleave', () => {
-			if (this.hideTimeout) clearTimeout(this.hideTimeout);
-			this.hideTimeout = setTimeout(() => {
-				tooltip.classList.remove('show');
-			}, 100);
-		});
+	#placementElement() {
+		const bounds_tooltip = this.#tooltip_element.getBoundingClientRect();
+		const bounds = this.#parent_element.getBoundingClientRect();
+		let top, left;
+		if (this.#placement == 'top') {
+			top = bounds.y - bounds_tooltip.height;
+			left = bounds.x + (bounds.width / 2) - (bounds_tooltip.width / 2);
+		}
+		if (['top-left', 'left-top'].includes(this.#placement)) {
+			top = bounds.y - bounds_tooltip.height;
+			left = bounds.x - bounds_tooltip.width;
+		}
+		if (['top-right', 'right-top'].includes(this.#placement)) {
+			top = bounds.y - bounds_tooltip.height;
+			left = bounds.x + bounds.width;
+		}
+		if (this.#placement == 'bottom') {
+			top = bounds.top + bounds.height;
+			left = bounds.left + (bounds.width / 2) - (bounds_tooltip.width / 2);
+		}
+		if (['bottom-left', 'left-bottom'].includes(this.#placement)) {
+			top = bounds.top + bounds.height;
+			left = bounds.left - bounds_tooltip.width;
+		}
+		if (['bottom-right', 'right-bottom'].includes(this.#placement)) {
+			top = bounds.top + bounds.height;
+			left = bounds.left + bounds.width;
+		}
+		if (this.#placement == 'left') {
+			top = bounds.top + (bounds.height / 2) - (bounds_tooltip.height / 2);
+			left = bounds.left - bounds_tooltip.width;
+		}
+		if (this.#placement == 'right') {
+			top = bounds.top + (bounds.height / 2) - (bounds_tooltip.height / 2);
+			left = bounds.x + bounds.width;
+		}
+		this.#tooltip_element.style.setProperty('top', `${top}px`);
+		this.#tooltip_element.style.setProperty('left', `${left}px`);
 	}
 }
 
