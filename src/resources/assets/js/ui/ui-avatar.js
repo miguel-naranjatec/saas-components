@@ -42,6 +42,9 @@ class UiAvatar extends HTMLElement {
 	render() {
 		this.shadowRoot.innerHTML = `
         <style>
+		:host {
+			display: inline-flex;
+		}
 		.avatar{
 			background-color: var(--color-primary);
 			color: var(--color-primary-contrast);

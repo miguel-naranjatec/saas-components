@@ -28,25 +28,17 @@ class UiProgressBar extends HTMLElement {
 			this.#variant = newValue;
 		}
 		if (name === 'progress' && this.between(newValue, 0, 100)) {
-
-
-
-			// TODO validate
 			this.#progress = newValue;
 		}
-
 		this.render();
 	}
 
 	between(value, min, max) {
-
 		return value >= min && value <= max;
-
 	}
 
 	render() {
 		this.#styles.replaceSync(`
-			
 			.progress-bar {
 				display: flex;
 				width: 100%;
@@ -61,7 +53,6 @@ class UiProgressBar extends HTMLElement {
 				width: ${this.#progress}%;
 			}
 		`);
-
 		this.shadowRoot.adoptedStyleSheets = [this.#styles];
 		this.shadowRoot.innerHTML = `<ui-flex align='center'>
 		<div class="progress-bar" role="progressbar"><span class='track'></span></div>

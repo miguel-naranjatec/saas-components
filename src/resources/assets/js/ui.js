@@ -13,6 +13,7 @@ import "./ui/ui-breadcrumb";
 import "./ui/ui-button-group";
 import "./ui/ui-button";
 import "./ui/ui-card";
+import "./ui/ui-coachmark";
 import "./ui/ui-context-menu";
 import "./ui/ui-divider";
 import "./ui/ui-dropdown-menu";
