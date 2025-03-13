@@ -1,8 +1,31 @@
 
 :root {
-    --alert-size-default-padding: var(--gap);
-    --alert-size-xs-padding: var(--gap);
-    --alert-size-sm-padding: var(--gap);
-    --alert-size-lg-padding: var(--gap);
-    --alert-size-xl-padding: var(--gap);
+    --alert-xs-padding: var(--padding-sm);
+    --alert-xs-gap: var(--gap-xs);
+    --alert-info-xs-gap: calc(var(--gap-xs) / 2);
+
+
+    --alert-sm-padding: var(--padding-sm);
+    --alert-sm-gap: var(--gap-sm);
+    --alert-info-sm-gap: calc(var(--gap-sm) / 2);
+
+
+    --alert-default-padding: var(--padding);
+    --alert-default-gap: var(--gap);
+    --alert-info-default-gap: calc(var(--gap) / 2);
+
+    --alert-lg-padding: var(--padding-lg);
+    --alert-lg-gap: var(--gap-lg);
+    --alert-info-lg-gap: calc(var(--gap-lg) / 2);
+
+    --alert-xl-padding: var(--padding-xl);
+    --alert-xl-gap: var(--gap-xl);
+    --alert-info-xl-gap: calc(var(--gap-xl) / 2);
+
+    --alert-default-border-radius: var(--border-radius);
+
+
+    --alert-default-outline: 1px solid #000;
+    --alert-default-outline-offset: -1px;
+
 }

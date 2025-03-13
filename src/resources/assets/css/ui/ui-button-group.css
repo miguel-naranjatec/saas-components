@@ -1,0 +1,11 @@
+:root{
+    --button-group-xs-gap: var(--gap-xs);
+    --button-group-sm-gap: var(--gap-sm);
+    --button-group-default-gap: var(--gap);
+    --button-group-lg-gap: var(--gap-lg);
+    --button-group-xl-gap: var(--gap-xl);
+
+
+
+
+}

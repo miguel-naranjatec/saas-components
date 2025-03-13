@@ -1,12 +1,12 @@
 class UiAlert extends HTMLElement {
 	#version = "0.0.1";
+	#styles = new CSSStyleSheet();
 	#variants = ['default', 'filled', 'outlined', 'ghost', 'subtle'];
 	#variant = 'default';
 	#sizes = ['default', 'xs', 'sm', 'lg', 'xl'];
 	#size = 'default';
 	#severities = ['success', 'info', 'warning', 'error'];
 	#severity = 'info';
-
 	constructor() {
 		super();
 		this.attachShadow({ mode: "open" });
@@ -41,19 +41,37 @@ class UiAlert extends HTMLElement {
 
 	render() {
 		const title = (this.getAttribute('title')) ?? false;
+		this.#styles.replaceSync(`
+			:host{
+				display: flex;
+			}
+			.alert{
+				background-color: pink;
+				display: flex;
+				width: 100%;
+				align-items: center;
+				gap: var(--alert-${this.#size}-gap);
+				padding: var(--alert-${this.#size}-padding);
+				border-radius: var(--alert-${this.#variant}-border-radius);
+				outline: var(--alert-${this.#variant}-outline);
+				outline-offset: var(--alert-${this.#variant}-outline-offset);
+			}
+			.alert > .info{
+				display: flex;
+				width: 100%;
+				flex-direction: column;
+				gap: var(--alert-info-${this.#size}-gap);
+			}
+		`);
 
+		this.shadowRoot.adoptedStyleSheets = [this.#styles];
 		this.shadowRoot.innerHTML = `
-        <style>
-		.alert{
-			background-color: pink;
-			display: inline-flex;
-			padding: var(--alert-size-${this.#size}-padding);	
-		}
-        </style>
 		<div class='alert ${this.#severity} ${this.#variant}' role='alert'>
-			<div>
+			<ui-material-symbol size='${this.#size}' icon='info'></ui-material-symbol>
+			<div class='info'>
 				${(title) ? `<div class='title'>${this.title}</div>` : ''}
 				<slot></slot>
+				<slot name='actions'></slot>
 			</div>
 		</div>
       `;

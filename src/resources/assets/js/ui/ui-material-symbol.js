@@ -52,6 +52,8 @@ class UiMaterialSymbol extends HTMLElement {
 				-moz-font-feature-settings: 'liga';
 				-moz-osx-font-smoothing: grayscale;
   				font-variation-settings: var(--material-symbol-${this.#variant}-font-variation-settings);
+				user-select: none;
+				pointer-events: none;
 			}
         </style>
 		<span class="material-symbols-outlined">${this.#icon}</span>
