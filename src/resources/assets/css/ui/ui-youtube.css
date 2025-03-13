@@ -1,0 +1,5 @@
+:root {
+    --youtube-default-border-radius: var(--border-radius);
+    --youtube-default-outline: none;
+    --youtube-default-box-shadow: none;
+}
