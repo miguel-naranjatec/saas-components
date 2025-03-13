@@ -14,7 +14,7 @@ class UiTooltip extends HTMLElement {
 	#placement = 'top';
 	#variants = ["default"];
 	#variant = 'default';
-	#delay = 500;
+	#delay = 100;
 	#content;
 	#tooltip_element;
 	#parent_element;

@@ -148,7 +148,7 @@ class UiCoachmark extends HTMLElement {
 		this.#styles.replaceSync(`
 			:host{
 				position: fixed;
-				z-index: 2147483647;
+				z-index: calc(var(--z-index-max) - 100 );
 				display: inline-flex;
 				padding: var(--gap);
 			}
