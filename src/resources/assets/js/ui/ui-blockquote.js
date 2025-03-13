@@ -32,7 +32,7 @@ class UiBlockquote extends HTMLElement {
 	
 	render() {
 		this.#styles.replaceSync(`
-			:host{	
+			:host{
 				background: var(--blockquote-${this.#variant}-background);
 				color: var(--blockquote-${this.#variant}-color);
 				border-radius: var(--blockquote-${this.#variant}-border-radius);
