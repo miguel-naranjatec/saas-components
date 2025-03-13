@@ -27,7 +27,7 @@ class UiYoutube extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ['src', 'autoplay', 'controls', 'cc_load_policy', 'disablekb', 'enablejsapi', 'fs', 'iv_load_policy', 'loop', 'modestbranding', 'playsinline', 'rel', 'showinfo'];
+		return ['variant', 'src', 'autoplay', 'controls', 'cc_load_policy', 'disablekb', 'enablejsapi', 'fs', 'iv_load_policy', 'loop', 'modestbranding', 'playsinline', 'rel', 'showinfo'];
 	}
 	
 	connectedCallback() {
@@ -35,6 +35,9 @@ class UiYoutube extends HTMLElement {
 	}
 	
 	attributeChangedCallback(name, oldValue, newValue) {
+		if (name == 'variant' && this.#variants.includes(newValue)) {
+			this.#variant = newValue;
+		}
 		if (name == 'src') {
 			this.#iframe = this.getIframe(newValue);
 		}

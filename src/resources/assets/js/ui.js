@@ -8,6 +8,7 @@ import "./ui/ui-app-content";
 import "./ui/ui-app";
 import "./ui/ui-avatar";
 import "./ui/ui-badge";
+import "./ui/ui-blockquote";
 import "./ui/ui-bottom-navigation";
 import "./ui/ui-breadcrumb";
 import "./ui/ui-button-group";

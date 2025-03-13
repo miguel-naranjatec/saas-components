@@ -1,0 +1,6 @@
+:root {
+    --blockquote-default-background: var(--color-surface-darker);
+    --blockquote-default-color: var(--color-surface-darker-contrast);
+    --blockquote-default-border-radius: var(--border-radius-sm);
+    --blockquote-default-padding: var(--padding-xl);
+}
