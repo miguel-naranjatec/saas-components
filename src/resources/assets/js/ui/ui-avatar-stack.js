@@ -62,9 +62,7 @@ class UiAvatarStack extends HTMLElement {
 		}
 
 
-		:host:hover {
-			background-color: pink;
-		}
+
 
 
         </style>
