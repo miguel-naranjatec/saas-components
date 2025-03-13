@@ -1,19 +1,19 @@
 :root {
-    --avatar-xs-width: 24px;
-    --avatar-xs-font-size: 10px;
+    --avatar-xs-width: 16px;
+    --avatar-xs-font-size: 8px;
 
 
-    --avatar-sm-width: 32px;
-    --avatar-xm-font-size: 14px;
+    --avatar-sm-width: 24px;
+    --avatar-xm-font-size: 12px;
 
-    --avatar-default-width: 44px;
+    --avatar-default-width: 32px;
     --avatar-default-font-size: 16px;
 
-    --avatar-lg-width: 56px;
-    --avatar-lg-font-size: 18px;
+    --avatar-lg-width: 48px;
+    --avatar-lg-font-size: 24px;
 
     --avatar-xl-width: 64px;
-    --avatar-xl-font-size: 20px;
+    --avatar-xl-font-size: 32px;
 
 
 

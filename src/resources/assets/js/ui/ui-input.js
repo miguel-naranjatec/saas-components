@@ -20,6 +20,7 @@ class UiInput extends HTMLElement {
 	#minlength = false;
 	#spellcheck = false;
 	#label;
+	#caption;
 	#labelPlacements = ['top', 'bottom', 'left', 'right'];
 	#labelPlacement = 'top';
 	#inputPrefix;
@@ -39,6 +40,7 @@ class UiInput extends HTMLElement {
 			'disabled',
 			'label',
 			'label-placement',
+			'caption',
 			'type',
 			'name',
 			'placeholder',
@@ -157,6 +159,7 @@ class UiInput extends HTMLElement {
 		const label_right = (this.#label && this.#labelPlacement == 'right') ? `<label ${for_attr} >${this.#label}</label>` : ``;
 		const label_top = (this.#label && this.#labelPlacement == 'top') ? `<label ${for_attr} >${this.#label}</label>` : ``;
 		const label_bottom = (this.#label && this.#labelPlacement == 'bottom') ? `<label ${for_attr} >${this.#label}</label>` : ``;
+		const caption = (this.#caption) ? `<div class='caption' >${this.#label}</div>` : ``;
 		const placeholder = (this.#placeholder) ? `placeholder='${ this.#placeholder }'` : ``;
 		const name = (this.#name) ? `name='${ this.#name }'` : ``;
 		const type = `type='${ this.#type }'`;
@@ -170,6 +173,7 @@ class UiInput extends HTMLElement {
 			<div id='holder'>
 				<slot name='prepend'></slot>
 				${label_top}
+				${caption}
 				<div id='input'>
 					${inputPrefix}
 					<input ${id_attr} ${name} ${placeholder} ${type} ${disabled} ${spellcheck} />

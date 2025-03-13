@@ -4,7 +4,8 @@ class UiAvatar extends HTMLElement {
 	#variant = 'default';
 	#sizes = ['default', 'xs', 'sm', 'lg', 'xl'];
 	#size = 'default';
-	#name = null;
+	#name;
+	#src;
 
 	constructor() {
 		super();
@@ -16,7 +17,7 @@ class UiAvatar extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ["variant", "size", "name"];
+		return ["variant", "size", "name", "src"];
 	}
 	attributeChangedCallback(name, oldValue, newValue) {
 
@@ -32,7 +33,16 @@ class UiAvatar extends HTMLElement {
 			this.#name = newValue;
 		}
 
+		if (name == 'src') {
+			this.#src = this.generatePicture(newValue);
+		}
+
 		this.render();
+	}
+
+	generatePicture(src)
+	{
+		return `<picture><img loading='lazy' src='${src}' /></picture>`;
 	}
 
 	generateName() {
@@ -45,9 +55,9 @@ class UiAvatar extends HTMLElement {
 		:host {
 			display: inline-flex;
 		}
-		.avatar{
-			background-color: var(--color-primary);
-			color: var(--color-primary-contrast);
+		#avatar{
+			background-color: var(--color-surface-dark);
+			color: var(--color-surface-dark-contrast);
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
@@ -57,9 +67,23 @@ class UiAvatar extends HTMLElement {
 			line-height: 1;
 			font-size: var(--avatar-${this.#size}-font-size);
 			text-align: center;
+			user-select: none;
+			overflow: hidden;
 		}
+		#avatar > picture{
+			display: flex;
+			width: var(--avatar-${this.#size}-width);
+			height: var(--avatar-${this.#size}-width);
+		}
+
+		#avatar > picture > img{
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
         </style>
-		<div class='avatar ${this.#variant}'>${ this.generateName() }</div>
+		<div id='avatar'>${ (this.#src) ?? this.generateName() }</div>
       `;
 	}
 }
