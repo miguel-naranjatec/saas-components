@@ -17,4 +17,12 @@
 
     --avatar-default-border-radius: var(--border-radius);
     --avatar-rounded-border-radius: 128px;
+
+
+
+
+    --avatar-default-letter-spacing: var(--font-button-letter-spacing);
+    --avatar-sm-letter-spacing: var(--font-button-letter-spacing-sm);
+    --avatar-lg-letter-spacing: var(--font-button-letter-spacing-lg);
+
 }

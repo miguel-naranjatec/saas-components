@@ -34,10 +34,7 @@
     --badge-success-color: var(--color-success-contrast);
     --badge-success-outline: none;
 
-
-
     
-
     /* SIZES */
     
     --badge-default-border-radius: calc(var(--font-label-size) * .2);

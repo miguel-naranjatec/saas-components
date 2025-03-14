@@ -68,6 +68,7 @@ class UiAvatar extends HTMLElement {
 				line-height: 1;
 				font: var(--font-label);
 				font-size: var(--avatar-${this.#size}-font-size);
+				letter-spacing: var(--avatar-${this.#size}-letter-spacing);
 				text-align: center;
 				user-select: none;
 				overflow: hidden;
