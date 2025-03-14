@@ -4,10 +4,7 @@ class UiBreadcrumb extends HTMLElement {
 	#styles = new CSSStyleSheet();
 	#gaps = ['xs', 'sm', 'default'];
 	#gap = 'default';
-	#sizes = ['xs', 'sm', 'default']
-	#size = 'default';
-	#separator = "sample separador";
-
+	#separator = "/";
 	constructor() {
 		super();
 		this.attachShadow({ mode: 'open' });
@@ -15,27 +12,19 @@ class UiBreadcrumb extends HTMLElement {
 
 	connectedCallback() {
 		this.render();
-
+		
 		const slot = this.shadowRoot.querySelector('#options slot');
-	
 		const elements = slot.assignedElements({ flatten: true });
-		
-		
-
-
-		//console.log(this.shadowRoot.querySelector("div").assignedElements({ flatten: true }));
-		//let elements = this.shadowRoot.querySelector('#hidden slot').assignedElements({ flatten: true });
-	
-		
+		const last = elements.pop();
 		if (elements.length) {
 			elements.forEach(element => {
 				this.shadowRoot.querySelector('#breadcrumb').appendChild(element);
 				this.shadowRoot.querySelector('#breadcrumb').innerHTML += `<div class='separator'>${this.#separator}</div>`;
 			});
 		}
-		
-
-
+		if (last){
+			this.shadowRoot.querySelector('#breadcrumb').appendChild(last);
+		}
 	}
 
 	static get observedAttributes() {
@@ -46,9 +35,6 @@ class UiBreadcrumb extends HTMLElement {
 		if (name == 'gap' && this.#gaps.includes(newValue)){
 			this.#gap = newValue;
 		}
-		if (name == 'size' && this.#sizes.includes(newValue)){
-			this.#size = newValue;
-		}
 		if (name == 'separator'){
 			this.#separator = newValue;
 		}
@@ -57,33 +43,20 @@ class UiBreadcrumb extends HTMLElement {
 
 	render() {
 		this.#styles.replaceSync(`
-			:host{
-				display: flex;
-				gap: var(--breadcrumb-gap-${this.#gap});
-			}
-			#breadcrumb {
-				display: flex;
-				align-items: center;
-				gap: var(--breadcrumb-gap-${this.#gap});
-			}
-			#options{
-				display: none !important;
-				border: 6px solid pink;
-			}
-			.separator{
-	
-				display: inline-flex;
-			}
+			:host{display: flex;gap: var(--breadcrumb-gap-${this.#gap});font: var(--font-body-sm);}
+			#breadcrumb {display: flex;align-items: center;gap: var(--breadcrumb-gap-${this.#gap});}
+			#breadcrumb > * { white-space: nowrap; }
+			.separator{ display: inline-flex; }
+			#options{display: none;}
 		`);
-
 		this.shadowRoot.adoptedStyleSheets = [this.#styles];
 		this.shadowRoot.innerHTML = `
+		<slot name='prefix'></slot>
+		<nav id="breadcrumb"></nav>
+		<slot name='sufix'></slot>
 		<div id='options'>
 			<slot></slot>
 		</div>
-		<slot name='prefix'></slot>
-		<nav id="breadcrumb"></nav>
-		<slot name='sufix></slot>
 		`;
 
 	}

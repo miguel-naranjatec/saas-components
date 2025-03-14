@@ -1,28 +1,32 @@
 :root {
+    --badge-default-background: var(--color-primary);
+    --badge-default-color: var(--color-primary-contrast);
+    --badge-default-outline: none;
 
+    --badge-outlined-background: transparent;
+    --badge-outlined-color: var(--color-primary);
+    --badge-outlined-outline: 0px solid var(--color-primary);
+    
+    --badge-default-border-radius: calc(var(--font-label-size) * .2);
+    --badge-sm-border-radius: calc(var(--font-label-size) * .2);
+    --badge-lg-border-radius: calc(var(--font-label-size) * .2);
 
-    --badge-border-radius: var(--border-radius, 3px);
-    --badge-variant-primary-background: pink;
-    --badge-variant-primary-color: #FFF;
+    --badge-default-padding: calc(var(--font-label-size) * .5);
+    --badge-sm-padding: calc(var(--font-label-size-sm) * .5);
+    --badge-lg-padding: calc(var(--font-label-size-lg) * .5);
 
+    --badge-default-gap: calc(var(--font-label-size) * .5);
+    --badge-sm-gap: calc(var(--font-label-size-sm) * .5);
+    --badge-lg-gap: calc(var(--font-label-size-lg) * .5);
 
+    --badge-default-font: var(--font-label);
+    --badge-sm-font: var(--font-label-sm);
+    --badge-lg-font: var(--font-label-lg);
 
-    --badge-variant-default-background: pink;
-    --badge-variant-default-outline: 1px solid blue;
-    --badge-variant-default-outline-offset: -1px;
-    --badge-variant-default-color: #FFF;
-
-    --badge-size-default-border-radius: 3px;
-    --badge-size-sm-border-radius: 3px;
-    --badge-size-xs-border-radius: 3px;
-
-
-    --badge-size-default-padding: 4px;
-    --badge-size-sm-padding: 4px;
-    --badge-size-xs-padding: 4px;
-
-
-
-
-
+    --badge-default-outline-width: 1px;
+    --badge-default-outline-offset: -1px;
+    --badge-sm-outline-width: 1px;
+    --badge-sm-outline-offset: -1px;
+    --badge-lg-outline-width: 1px;
+    --badge-lg-outline-offset: -1px;
 }
