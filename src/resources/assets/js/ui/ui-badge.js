@@ -2,7 +2,7 @@ class UiBadge extends HTMLElement {
 
 	#version = "0.0.1";
 	#styles = new CSSStyleSheet();
-	#variants = ['default', 'outlined'];
+	#variants = ['default', 'secondary', 'tertiary', 'outlined', 'danger', 'warning', 'info', 'success'];
 	#variant = 'default';
 	#sizes = ['sm', 'default', 'lg'];
 	#size = 'default';

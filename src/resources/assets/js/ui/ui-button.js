@@ -2,7 +2,7 @@ class UiButton extends HTMLElement {
 
 	#version =  "0.0.1";
 	#styles = new CSSStyleSheet();
-	#variants = ['default', 'outlined', 'subtle', 'danger'];
+	#variants = ['default', 'secondary', 'tertiary', 'outlined', 'subtle', 'danger', 'info', 'success'];
 	#variant = 'default';
 	#sizes = [
 		'default',
@@ -10,6 +10,9 @@ class UiButton extends HTMLElement {
 		'lg'
 	];
 	#size = 'default';
+	#icon;
+	#icon_trailing;
+
 
 	constructor() {
 		super();
@@ -27,7 +30,7 @@ class UiButton extends HTMLElement {
 			"disabled",
 			"size",
 			"icon",
-			"icon_trailing",
+			"icon-trailing",
 			"loading",
 			"square"
 		];
@@ -40,6 +43,13 @@ class UiButton extends HTMLElement {
 			this.#size = newValue;
 		}
 
+		if (name == 'icon') {
+			this.#icon = newValue;
+		}
+
+		if (name == 'icon-trailing') {
+			this.#icon_trailing = newValue;
+		}
 		
 		this.render();
 	}
@@ -83,9 +93,12 @@ class UiButton extends HTMLElement {
 			}
 		`);
 		this.shadowRoot.adoptedStyleSheets = [this.#styles];
+		const icon = (this.#icon) ? `<ui-material-symbol variant='default' icon='${this.#icon}' size='${this.#size}'></ui-material-symbol>` : ``;
+		const icon_trailing = (this.#icon_trailing) ? `<ui-material-symbol variant='default' icon='${this.#icon_trailing}' size='${this.#size}'></ui-material-symbol>` : ``;
 		this.shadowRoot.innerHTML = `<button ${disabled ? "disabled" : ""}>
-			<ui-material-symbol variant='default' icon='info' size='${this.#size}'></ui-material-symbol>
+			${icon}
 			<slot></slot>
+			${icon_trailing}
 		</button>
       `;
 	}
