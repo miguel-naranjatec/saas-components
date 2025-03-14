@@ -1,21 +1,19 @@
 :root {
-    --avatar-xs-width: 16px;
-    --avatar-xs-font-size: 8px;
+    --avatar-xs-width: 20px;
+    --avatar-xs-font-size: calc(20px * .3);
 
 
     --avatar-sm-width: 24px;
-    --avatar-xm-font-size: 12px;
+    --avatar-sm-font-size: calc(24px * .3);
 
     --avatar-default-width: 32px;
-    --avatar-default-font-size: 16px;
+    --avatar-default-font-size: calc(32px * .3);
 
     --avatar-lg-width: 48px;
-    --avatar-lg-font-size: 24px;
+    --avatar-lg-font-size: calc(48px * .3);
 
     --avatar-xl-width: 64px;
-    --avatar-xl-font-size: 32px;
-
-
+    --avatar-xl-font-size: calc(64px * .3);
 
     --avatar-default-border-radius: var(--border-radius);
     --avatar-rounded-border-radius: 128px;

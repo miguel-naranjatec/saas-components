@@ -1,29 +1,64 @@
 :root {
 
+    --button-text-transform: var(--font-button-text-transform);
 
-    --button-border-radius: var(--border-radius, 3px);
+    /* VARIANTS */
 
-    --button-default-background: var(--color-secondary);
-    --button-default-color: var(--color-secondary-contrast);
+    --button-default-background: var(--color-primary);
+    --button-default-color: var(--color-primary-contrast);
+    --button-hover-default-background: var(--color-primary-light);
+    --button-hover-default-color: var(--color-primary-light-contrast);
+    --button-default-outline: none;
+    --button-hover-default-outline: 0px solid var(--color-primary);
+
+    --button-outlined-background: transparent;
+    --button-outlined-color: var(--color-primary);
+    --button-hover-outlined-background: var(--color-primary);
+    --button-hover-outlined-color: var(--color-primary-contrast);
+    --button-outlined-outline: 0px solid var(--color-primary);
+    --button-hover-outlined-outline: 0px solid var(--color-primary-darker);
+
+    --button-subtle-background: var(--color-surface-light);
+    --button-subtle-color: var(--color-surface-light-contrast);
+    --button-hover-subtle-background: var(--color-surface-lighter);
+    --button-hover-subtle-color: var(--color-surface-lighter-contrast);
+    --button-subtle-outline: none;
+    --button-hover-subtle-outline: 0px solid var(--color-surface-lighter-contrast);
+
+
+    --button-danger-background: var(--color-error);
+    --button-danger-color: var(--color-error-contrast);
+    --button-hover-danger-background: var(--color-error-light);
+    --button-hover-danger-color: var(--color-error-light-contrast);
+    --button-danger-outline: none;
+    --button-hover-danger-outline: 0px solid var(--color-error);
+
+    /* SIZES */
+
+    --button-default-padding: calc(var(--font-button-size) * 1);
+    --button-sm-padding: calc(var(--font-button-size-sm) * 1);
+    --button-lg-padding: calc(var(--font-button-size-lg) * 1.5);
     
-    --button-primary-background: var(--color-primary);
-    --button-primary-color: var(--color-primary-contrast);
+    --button-default-gap: calc(var(--font-button-size) * 1);
+    --button-sm-gap: calc(var(--font-button-size-sm) * 1);
+    --button-lg-gap: calc(var(--font-button-size-lg) * 1.5);
 
-    --button-filled-background: pink;
-    --button-filled-color: #FFF;
-    
-    --button-danger-background:var(--color-danger);
-    --button-danger-color: var(--color-danger-contrast);
+    --button-default-letter-spacing: var(--font-button-letter-spacing);
+    --button-sm-letter-spacing: var(--font-button-letter-spacing-sm);
+    --button-lg-letter-spacing: var(--font-button-letter-spacing-lg);
 
-    --button-variant-ghost-background: pink;
-    --button-variant-ghost-color: #FFF;
-    
-    --button-variant-subtle-background: pink;
-    --button-variant-subtle-color: #FFF;
+    --button-default-font: var(--font-button);
+    --button-sm-font: var(--font-button-sm);
+    --button-lg-font: var(--font-button-lg);
 
-    --button-xs-padding: var(--padding-xs);
-    --button-sm-padding: var(--padding-sm);
-    --button-default-padding: var(--padding);
-    --button-lg-padding: var(--padding-lg);
-    --button-xl-padding: var(--padding-xl);
+    --button-default-border-radius: calc(var(--font-button-size) * .2);
+    --button-sm-border-radius: calc(var(--font-button-size) * .2);
+    --button-lg-border-radius: calc(var(--font-button-size) * .2);
+
+    --button-sm-outline-width: 1px;
+    --button-sm-outline-offset: 0;
+    --button-default-outline-width: 1px;
+    --button-default-outline-offset: 0;
+    --button-lg-outline-width: 1px;
+    --button-lg-outline-offset: 0;
 }

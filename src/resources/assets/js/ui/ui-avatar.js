@@ -1,5 +1,7 @@
 class UiAvatar extends HTMLElement {
+
 	#version = "0.0.1";
+	#styles = new CSSStyleSheet();
 	#variants = ['default', 'rounded'];
 	#variant = 'default';
 	#sizes = ['default', 'xs', 'sm', 'lg', 'xl'];
@@ -50,40 +52,39 @@ class UiAvatar extends HTMLElement {
 	}
 
 	render() {
-		this.shadowRoot.innerHTML = `
-        <style>
-		:host {
-			display: inline-flex;
-		}
-		#avatar{
-			background-color: var(--color-surface-dark);
-			color: var(--color-surface-dark-contrast);
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			aspect-ratio: 1;
-			width: var(--avatar-${this.#size}-width);
-			border-radius: var(--avatar-${this.#variant}-border-radius);
-			line-height: 1;
-			font-size: var(--avatar-${this.#size}-font-size);
-			text-align: center;
-			user-select: none;
-			overflow: hidden;
-		}
-		#avatar > picture{
-			display: flex;
-			width: var(--avatar-${this.#size}-width);
-			height: var(--avatar-${this.#size}-width);
-		}
-
-		#avatar > picture > img{
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-		}
-
-        </style>
-		<div id='avatar'>${ (this.#src) ?? this.generateName() }</div>
+		this.#styles.replaceSync(`
+			:host {
+				display: inline-flex;
+			}
+			#avatar{
+				background-color: var(--color-surface-dark);
+				color: var(--color-surface-dark-contrast);
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				aspect-ratio: 1;
+				width: var(--avatar-${this.#size}-width);
+				border-radius: var(--avatar-${this.#variant}-border-radius);
+				line-height: 1;
+				font: var(--font-label);
+				font-size: var(--avatar-${this.#size}-font-size);
+				text-align: center;
+				user-select: none;
+				overflow: hidden;
+			}
+			#avatar > picture{
+				display: flex;
+				width: var(--avatar-${this.#size}-width);
+				height: var(--avatar-${this.#size}-width);
+			}
+			#avatar > picture > img{
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		`);
+		this.shadowRoot.adoptedStyleSheets = [this.#styles];
+		this.shadowRoot.innerHTML = `<div id='avatar'>${ (this.#src) ?? this.generateName() }</div>
       `;
 	}
 }

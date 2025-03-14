@@ -1,9 +1,14 @@
 class UiButton extends HTMLElement {
 
 	#version =  "0.0.1";
-	#variants = ['default', 'primary', 'filled', 'danger', 'ghost', 'subtle'];
+	#styles = new CSSStyleSheet();
+	#variants = ['default', 'outlined', 'subtle', 'danger'];
 	#variant = 'default';
-	#sizes = ['default', 'xs', 'sm', 'lg', 'xl'];
+	#sizes = [
+		'default',
+		'sm',
+		'lg'
+	];
 	#size = 'default';
 
 	constructor() {
@@ -34,34 +39,54 @@ class UiButton extends HTMLElement {
 		if (name == 'size' && this.#sizes.includes(newValue)) {
 			this.#size = newValue;
 		}
+
+		
 		this.render();
 	}
 
 	render() {
 		const disabled = this.hasAttribute("disabled");
-		this.shadowRoot.innerHTML = `
-        <style>
-			:host{
-				
-			}
+		this.#styles.replaceSync(`
           	button {
 				box-sizing: border-box;
             	display: inline-flex;
+				align-items: center;
+				gap: var(--button-${this.#size}-gap);
             	
-            	cursor: ${disabled ? "not-allowed" : "pointer"};
-            	opacity: ${disabled ? "0.5" : "1"};
+			
+				line-height: 1;
+				whitespace: nowrap;
+				font: var(--button-${this.#size}-font);
+				text-transform: var(--button-text-transform);
+				letter-spacing: var(--button-${this.#size}-letter-spacing);
+				padding: var(--button-${this.#size}-padding);
+				border-radius: var(--button-${this.#size}-border-radius);
+
 				background: var(--button-${this.#variant}-background);
 				color: var(--button-${this.#variant}-color);
 				border: var(--button-${this.#variant}-border);
+
 				outline: var(--button-${this.#variant}-outline);
-				border-radius: var(--button-${this.#size}-border-radius);
-				font: var(--button-${this.#size}-font);
-				padding: var(--button-${this.#size}-padding);
+				outline-offset: var(--button-${this.#variant}-outline-offset);
+				outline-width: var(--button-${this.#size}-outline-width);
 
+				cursor: ${disabled ? "not-allowed" : "pointer"};
+            	opacity: ${disabled ? "0.5" : "1"};
 
-          }
-        </style>
-        <button ${disabled ? "disabled" : ""}><slot></slot></button>
+				transition: all var(--transition-duration) var(--ease-in-out);
+        	}
+			button:is(:hover,:focus){
+				background: var(--button-hover-${this.#variant}-background);
+				color: var(--button-hover-${this.#variant}-color);
+				outline: var(--button-hover-${this.#variant}-outline);
+				outline-width: var(--button-${this.#size}-outline-width);
+			}
+		`);
+		this.shadowRoot.adoptedStyleSheets = [this.#styles];
+		this.shadowRoot.innerHTML = `<button ${disabled ? "disabled" : ""}>
+			<ui-material-symbol variant='default' icon='info' size='${this.#size}'></ui-material-symbol>
+			<slot></slot>
+		</button>
       `;
 	}
 }

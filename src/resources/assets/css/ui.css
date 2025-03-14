@@ -214,6 +214,20 @@
     --font-body: var(--font-body-weight) var(--font-body-size)/var(--font-body-line-height) var(--font-body-family);
     --font-body-sm: var(--font-body-weight) var(--font-body-size-sm)/var(--font-body-line-height) var(--font-body-family);
 
+    --font-button-weight: 700;
+    --font-button-family: "Poppins", sans-serif;
+    --font-button-size-sm: .6rem;
+    --font-button-size: .7rem;
+    --font-button-size-lg: .8rem;
+    --font-button-line-height: 1;
+    --font-button: var(--font-button-weight) var(--font-button-size)/var(--font-button-line-height) var(--font-button-family);
+    --font-button-sm: var(--font-button-weight) var(--font-button-size-sm)/var(--font-button-line-height) var(--font-button-family);
+    --font-button-lg: var(--font-button-weight) var(--font-button-size-lg)/var(--font-button-line-height) var(--font-button-family);
+    --font-button-text-transform: uppercase;
+    --font-button-letter-spacing: calc(var(--font-button-size) * .2);
+    --font-button-letter-spacing-lg: calc(var(--font-button-size-lg) * .2);
+    --font-button-letter-spacing-sm: calc(var(--font-button-size-sm) * .2);
+
     --font-label-weight: 400;
     --font-label-family: "Poppins", sans-serif;
     --font-label-size-sm: .5rem;
