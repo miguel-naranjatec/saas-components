@@ -60,6 +60,14 @@
     --button-success-outline: none;
     --button-hover-success-outline: 0px solid var(--color-success);
 
+    --button-transparent-background: transparent;
+    --button-transparent-color: var(--color-surface-contrast);
+    --button-hover-transparent-background: var(--color-surface-light);
+    --button-hover-transparent-color: var(--color-surface-light-contrast);
+    --button-transparent-outline: none;
+    --button-hover-transparent-outline: none;
+
+
     /* SIZES */
 
     --button-default-padding: calc(var(--font-button-size) * 1);

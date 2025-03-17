@@ -25,6 +25,7 @@ import "./ui/ui-file-upload";
 import "./ui/ui-flex";
 import "./ui/ui-grid";
 import "./ui/ui-icon";
+import "./ui/ui-image";
 import "./ui/ui-input";
 import "./ui/ui-list";
 import "./ui/ui-material-symbol";
