@@ -1,5 +1,7 @@
 :root {
 
+    --badge-text-transform: var(--font-label-text-transform);
+
     /* VARIANTS */
 
     --badge-default-background: var(--color-primary);
@@ -37,26 +39,36 @@
     
     /* SIZES */
     
-    --badge-default-border-radius: calc(var(--font-label-size) * .2);
-    --badge-sm-border-radius: calc(var(--font-label-size) * .2);
-    --badge-lg-border-radius: calc(var(--font-label-size) * .2);
-
-    --badge-default-padding: calc(var(--font-label-size) * .5);
-    --badge-sm-padding: calc(var(--font-label-size-sm) * .5);
-    --badge-lg-padding: calc(var(--font-label-size-lg) * .5);
-
-    --badge-default-gap: calc(var(--font-label-size) * .5);
-    --badge-sm-gap: calc(var(--font-label-size-sm) * .5);
-    --badge-lg-gap: calc(var(--font-label-size-lg) * .5);
-
-    --badge-default-font: var(--font-label);
+    --badge-sm-gap: calc(var(--font-label-size-sm) * .75);
+    --badge-sm-padding: calc(var(--font-label-size-sm) * .75);
     --badge-sm-font: var(--font-label-sm);
-    --badge-lg-font: var(--font-label-lg);
-
-    --badge-default-outline-width: 1px;
-    --badge-default-outline-offset: -1px;
+    --badge-sm-letter-spacing: var(--font-label-sm-letter-spacing);
+    --badge-sm-border-radius: calc(var(--font-label-size) * .2);
     --badge-sm-outline-width: 1px;
     --badge-sm-outline-offset: -1px;
+    
+    
+    --badge-default-gap: calc(var(--font-label-size) * .75);
+    --badge-default-padding: calc(var(--font-label-size) * .75);
+    --badge-default-font: var(--font-label);
+    --badge-default-letter-spacing: var(--font-label-letter-spacing);
+    --badge-default-border-radius: calc(var(--font-label-size) * .2);
+    --badge-default-outline-width: 1px;
+    --badge-default-outline-offset: -1px;
+    
+    
+    --badge-lg-gap: calc(var(--font-label-size-lg) * .75);
+    --badge-lg-padding: calc(var(--font-label-size-lg) * .75);
+    --badge-lg-font: var(--font-label-lg);
+    --badge-lg-letter-spacing: var(--font-label-lg-letter-spacing);
+    --badge-lg-border-radius: calc(var(--font-label-size) * .2);
     --badge-lg-outline-width: 1px;
     --badge-lg-outline-offset: -1px;
+
+
+
+
+
+
+   
 }

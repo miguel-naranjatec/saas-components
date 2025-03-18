@@ -1,0 +1,11 @@
+:root{
+    --card-default-background: var(--color-surface-lighter);
+    --card-default-border: none;
+    --card-default-border-radius: var(--border-radius);
+    --card-default-outline: 1px solid  var(--color-surface-darker);
+    --card-default-outline-offset: -1px;
+    --card-default-padding: var(--padding-lg);
+    --card-default-gap: var(--padding-lg);
+
+
+}

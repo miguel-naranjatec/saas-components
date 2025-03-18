@@ -73,6 +73,11 @@ class UiTooltip extends HTMLElement {
 
 	render() {
 		this.#styles.replaceSync(`
+			:host{
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+			}
 			#parent{
 				display: inline-flex;	
 			}
@@ -80,10 +85,13 @@ class UiTooltip extends HTMLElement {
             	position: fixed;
 				top: 0;
 				left: 0;
-            	background-color: var(--tooltip-variant-${this.#variant}-background);
-            	color: var(--tooltip-variant-${this.#variant}-color);
-            	padding: var(--tooltip-variant-${this.#variant}-padding);
-				border-radius: var(--tooltip-variant-${this.#variant}-border-radius);
+            	background-color: var(--tooltip-${this.#variant}-background);
+            	color: var(--tooltip-${this.#variant}-color);
+            	padding: var(--tooltip-${this.#variant}-padding);
+				border-radius: var(--tooltip-${this.#variant}-border-radius);
+				font: var(--tooltip-${this.#variant}-font);
+				text-transform: var(--tooltip-${this.#variant}-text-transform);
+
             	z-index: var(--z-index-max);
 				opacity: 0;
 				transition: opacity 0.3s ease;

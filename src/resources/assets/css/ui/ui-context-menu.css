@@ -1,8 +1,13 @@
 
 :root {
-    --context-menu-default-background: #FFF;
-    --context-menu-default-border: 1px solid #000;
-    --context-menu-default-outline: 1px solid #000;
-    --context-menu-default-outline-offset: 5px;
+    --context-menu-default-font: var(--font-body-sm);
+    --context-menu-default-padding: var(--padding-xs);
+    --context-menu-default-gap: var(--gap-xs);
+    --context-menu-default-background: var(--color-surface-lighter);
+    --context-menu-default-color: var(--color-surface-lighter-contrast);
+    --context-menu-default-border: none;
+    --context-menu-default-outline: 1px solid var(--color-surface-darker);
+    --context-menu-default-outline-offset: -1px;
+    --context-menu-default-border-radius: var(--border-radius-sm);
 
 }

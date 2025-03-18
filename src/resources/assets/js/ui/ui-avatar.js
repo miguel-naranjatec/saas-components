@@ -22,43 +22,61 @@ class UiAvatar extends HTMLElement {
 		return ["variant", "size", "name", "src"];
 	}
 	attributeChangedCallback(name, oldValue, newValue) {
-
 		if (name == 'variant' && this.#variants.includes(newValue)) {
 			this.#variant = newValue;
 		}
-
 		if (name == 'size' && this.#sizes.includes(newValue)) {
 			this.#size = newValue;
 		}
-
 		if (name == 'name') {
 			this.#name = newValue;
 		}
-
 		if (name == 'src') {
 			this.#src = this.generatePicture(newValue);
 		}
-
 		this.render();
 	}
 
-	generatePicture(src)
-	{
+	generatePicture(src) {
 		return `<picture><img loading='lazy' src='${src}' /></picture>`;
 	}
 
 	generateName() {
-		return (!this.#name) ? "" : (this.#name.match(/\b\w/g) || []).slice(0, 2).join("").toUpperCase();
+		return (!this.#name) ? `<ui-material-symbol size='${this.#size}' icon='person'></ui-symbol-icon>` : (this.#name.match(/\b\w/g) || []).slice(0, 2).join("").toUpperCase();
+	}
+
+
+	stringToColour(str) {
+		if (!str) {
+			return `var(--color-primary)` 
+		}
+		let hash = 0;
+		str.split('').forEach(char => {
+			hash = char.charCodeAt(0) + ((hash << 5) - hash)
+		})
+		let colour = '#'
+		for (let i = 0; i < 3; i++) {
+			const value = (hash >> (i * 8)) & 0xff
+			colour += value.toString(16).padStart(2, '0')
+		}
+		return colour
 	}
 
 	render() {
 		this.#styles.replaceSync(`
 			:host {
 				display: inline-flex;
+
+				--custom-color: ${ this.stringToColour(this.#name) };
 			}
 			#avatar{
 				background-color: var(--color-surface-dark);
-				color: var(--color-surface-dark-contrast);
+
+
+
+				background: hsl(from var(--custom-color) h s calc(l));
+				color: hsl(from var(--custom-color) h s calc(l + 50));
+		
 				display: inline-flex;
 				align-items: center;
 				justify-content: center;
@@ -85,7 +103,7 @@ class UiAvatar extends HTMLElement {
 			}
 		`);
 		this.shadowRoot.adoptedStyleSheets = [this.#styles];
-		this.shadowRoot.innerHTML = `<div id='avatar'>${ (this.#src) ?? this.generateName() }</div>
+		this.shadowRoot.innerHTML = `<div id='avatar'>${(this.#src) ?? this.generateName()}</div>
       `;
 	}
 }

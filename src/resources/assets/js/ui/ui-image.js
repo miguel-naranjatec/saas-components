@@ -23,6 +23,7 @@ class UiImage extends HTMLElement {
 			"fit"
 		];
 	}
+	
 	attributeChangedCallback(name, oldValue, newValue) {
 		if (name == 'src' ) {
 			this.#src = newValue;

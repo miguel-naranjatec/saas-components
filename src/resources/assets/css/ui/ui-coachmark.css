@@ -1,0 +1,11 @@
+:root{
+    --coachmark-default-width: 500px;
+    --coachmark-default-font: var(--font-body);
+    --coachmark-default-gap: var(--gap-lg);
+    --coachmark-default-border: none;
+    --coachmark-default-padding: var(--padding-lg);
+    --coachmark-default-background: var(--color-surface-lighter);
+    --coachmark-default-outline: 1px solid var(--color-surface-darker);
+    --coachmark-default-outline-offset: -1px;
+    --coachmark-default-border-radius: var(--border-radius);
+}

@@ -7,6 +7,8 @@
 @import './ui/ui-breadcrumb.css';
 @import './ui/ui-button-group.css';
 @import './ui/ui-button.css';
+@import './ui/ui-card.css';
+@import './ui/ui-coachmark.css';
 @import './ui/ui-context-menu.css';
 @import './ui/ui-divider.css';
 @import './ui/ui-dropdown.css';
@@ -59,17 +61,19 @@
 
     --gap-xs: 4px;
     --gap-sm: 8px;
-    --gap: 12px;
-    --gap-lg: 16px;
-    --gap-xl: 24px;
-    --gap-2xl: 40px;
+    --gap: 16px;
+    --gap-lg: 24px;
+    --gap-xl: 32px;
+    --gap-2xl: 48px;
     --gap-3xl: 64px;
 
     --padding-xs: 4px;
     --padding-sm: 8px;
-    --padding: 12px;
-    --padding-lg: 16px;
-    --padding-xl: 24px;
+    --padding: 16px;
+    --padding-lg: 24px;
+    --padding-xl: 32px;
+    --padding-2xl: 48px;
+    --padding-3xl: 64px;
 
     --perspective-dramatic: 100px;
     --perspective-near: 300px;
@@ -197,22 +201,27 @@
     --font-headline: var(--font-headline-weight) var(--font-headline-size)/var(--font-headline-line-height) var(--font-headline-family);
 
     --font-title-weight: 600;
+    --font-title-weight-light: 500;
     --font-title-family: "Poppins", sans-serif;
     --font-title-size-lg: 1.7rem;
     --font-title-size: 1.5rem;
     --font-title-size-sm: 1.3rem;
     --font-title-line-height: 1.5;
     --font-title: var(--font-title-weight) var(--font-title-size)/var(--font-title-line-height) var(--font-title-family);
+    --font-title-sm: var(--font-title-weight) var(--font-title-size-sm)/var(--font-title-line-height) var(--font-title-family);
 
     --font-body-weight: 400;
+    --font-body-weight-light: 300;
+    --font-body-weight-bold: 500;
+    --font-body-weight-bolder: 700;
     --font-body-family: "Poppins", sans-serif;
     --font-body-size-sm: .8rem;
     --font-body-size: 1rem;
     --font-body-size-lg: 1.2rem;
     --font-body-line-height: 1.4;
-
     --font-body: var(--font-body-weight) var(--font-body-size)/var(--font-body-line-height) var(--font-body-family);
     --font-body-sm: var(--font-body-weight) var(--font-body-size-sm)/var(--font-body-line-height) var(--font-body-family);
+    --font-body-lg: var(--font-body-weight) var(--font-body-size-lg)/var(--font-body-line-height) var(--font-body-family);
 
     --font-button-weight: 700;
     --font-button-family: "Poppins", sans-serif;
@@ -224,9 +233,9 @@
     --font-button-sm: var(--font-button-weight) var(--font-button-size-sm)/var(--font-button-line-height) var(--font-button-family);
     --font-button-lg: var(--font-button-weight) var(--font-button-size-lg)/var(--font-button-line-height) var(--font-button-family);
     --font-button-text-transform: uppercase;
+    --font-button-letter-spacing-sm: calc(var(--font-button-size-sm) * .2);
     --font-button-letter-spacing: calc(var(--font-button-size) * .2);
     --font-button-letter-spacing-lg: calc(var(--font-button-size-lg) * .2);
-    --font-button-letter-spacing-sm: calc(var(--font-button-size-sm) * .2);
 
     --font-label-weight: 400;
     --font-label-family: "Poppins", sans-serif;
@@ -237,6 +246,10 @@
     --font-label: var(--font-label-weight) var(--font-label-size)/var(--font-label-line-height) var(--font-label-family);
     --font-label-sm: var(--font-label-weight) var(--font-label-size-sm)/var(--font-label-line-height) var(--font-label-family);
     --font-label-lg: var(--font-label-weight) var(--font-label-size-lg)/var(--font-label-line-height) var(--font-label-family);
+    --font-label-text-transform: uppercase;
+    --font-label-letter-spacing-sm: calc(var(--font-label-size-sm) * .2);
+    --font-label-letter-spacing: calc(var(--font-label-size) * .2);
+    --font-label-letter-spacing-lg: calc(var(--font-label-size-lg) * .2);
 
     
 

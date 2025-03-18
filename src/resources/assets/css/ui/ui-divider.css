@@ -1,3 +1,9 @@
 :root {
-    --divider-thickness-default: 1px;
+
+    --divider-default-background: var(--color-surface-darker);
+
+    --divider-default-width: 1px;
+
+
+
 }

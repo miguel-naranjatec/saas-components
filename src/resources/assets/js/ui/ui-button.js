@@ -1,10 +1,19 @@
 class UiButton extends HTMLElement {
 
 	//TODO add ripple effect? https://github.com/mariusclaret/ripple-effect/blob/master/ripple.js
-
 	#version =  "0.0.2";
 	#styles = new CSSStyleSheet();
-	#variants = ['default', 'secondary', 'tertiary', 'outlined', 'subtle', 'transparent', 'danger', 'info', 'success'];
+	#variants = [
+		'default',
+		'secondary',
+		'tertiary',
+		'outlined',
+		'subtle',
+		'transparent',
+		'danger',
+		'info',
+		'success'
+	];
 	#variant = 'default';
 	#sizes = [
 		'default',
@@ -30,8 +39,6 @@ class UiButton extends HTMLElement {
 	static get observedAttributes() {
 		return [
 			"variant",
-			"size",
-			"disabled",
 			"size",
 			"icon",
 			"icon-trailing",
@@ -64,17 +71,25 @@ class UiButton extends HTMLElement {
 		if (name == 'target') {
 			this.#target = newValue;
 		}
+
+	
 		
 		this.render();
 	}
 
 	render() {
-		const disabled = this.hasAttribute("disabled");
+		const icon = (this.#icon) ? `<ui-material-symbol variant='default' icon='${this.#icon}' size='${this.#size}'></ui-material-symbol>` : ``;
+		const icon_trailing = (this.#icon_trailing) ? `<ui-material-symbol variant='default' icon='${this.#icon_trailing}' size='${this.#size}'></ui-material-symbol>` : ``;
+		const href = (this.#href) ? `href='${this.#href}'` : ``;
+		const tag = (this.#href) ? 'a' : 'button';
+		const target = (this.#href && this.#target) ? `target='${this.#target}'` : ``;
+		const disabled = (this.hasAttribute("disabled")) ? `disabled` : ``;
 		const fullwidth = this.hasAttribute("fullwidth");
-
 		this.#styles.replaceSync(`
 			:host {
 				display: ${ (fullwidth) ? 'flex' : 'inline-flex' };
+			}
+			:host:disabled{
 			}
           	:is(button, a) {
 				box-sizing: border-box;
@@ -93,11 +108,12 @@ class UiButton extends HTMLElement {
 				color: var(--button-${this.#variant}-color);
 				border: var(--button-${this.#variant}-border);
 				outline: var(--button-${this.#variant}-outline);
-				outline-offset: var(--button-${this.#variant}-outline-offset);
+				outline-offset: var(--button-${this.#size}-outline-offset);
 				outline-width: var(--button-${this.#size}-outline-width);
-				cursor: ${disabled ? "not-allowed" : "pointer"};
-            	opacity: ${disabled ? "0.5" : "1"};
 				transition: all var(--transition-duration) var(--ease-in-out);
+				text-decoration: none;
+				user-select: none;
+				cursor: pointer;
         	}
 			:is(button, a):is(:hover,:focus){
 				background: var(--button-hover-${this.#variant}-background);
@@ -106,14 +122,12 @@ class UiButton extends HTMLElement {
 				outline-width: var(--button-${this.#size}-outline-width);
 			}
 		`);
+
 		this.shadowRoot.adoptedStyleSheets = [this.#styles];
-		const icon = (this.#icon) ? `<ui-material-symbol variant='default' icon='${this.#icon}' size='${this.#size}'></ui-material-symbol>` : ``;
-		const icon_trailing = (this.#icon_trailing) ? `<ui-material-symbol variant='default' icon='${this.#icon_trailing}' size='${this.#size}'></ui-material-symbol>` : ``;
-		
-		const tag = (this.#href) ? 'a' : 'button';
-		const target = (this.#href && this.#target) ? `target='${this.#target}'` : ``;
+
 		this.shadowRoot.innerHTML = `
-		<${tag} ${disabled ? "disabled" : ""} ${target}>
+		<${tag} ${href} ${disabled} ${target}>
+			
 			${icon}
 			<slot></slot>
 			${icon_trailing}

@@ -1,6 +1,18 @@
 :root {
-    --blockquote-default-background: var(--color-surface-darker);
-    --blockquote-default-color: var(--color-surface-darker-contrast);
-    --blockquote-default-border-radius: var(--border-radius-sm);
+    --blockquote-default-background: var(--color-surface-dark);
+    --blockquote-default-color: var(--color-surface-dark-contrast);
+    --blockquote-default-border-radius: var(--border-radius-lg);
     --blockquote-default-padding: var(--padding-xl);
+    --blockquote-default-gap: var(--gap-xl);
+    --blockquote-default-font: var(--font-body-lg);
+
+
+
+    --blockquote-primary-background: var(--color-primary);
+    --blockquote-primary-color: var(--color-primary-contrast);
+    --blockquote-primary-border-radius: var(--border-radius-lg);
+    --blockquote-primary-padding: var(--padding-xl);
+    --blockquote-primary-gap: var(--gap-xl);
+    --blockquote-primary-font: var(--font-body-lg);
+    
 }

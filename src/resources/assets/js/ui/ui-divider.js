@@ -1,10 +1,13 @@
 class UiDivider extends HTMLElement {
 
 	#version = "0.0.1";
+	#styles = new CSSStyleSheet();
 	#variants = ["default"];
 	#variant = "default";
-	#sizes = ["xs", "sm", "default", "lg", "xl"];
+	#sizes = ["default"];
 	#size = "default";
+	#orientations = ["vertical", "horizontal"];
+	#orientation = "horizontal";
 
 	constructor() {
 		super();
@@ -26,23 +29,27 @@ class UiDivider extends HTMLElement {
 		if (name == 'size' && this.#sizes.includes(newValue)) {
 			this.#size = newValue;
 		}
+		if (name == 'orientation' && this.#orientations.includes(newValue)) {
+			this.#orientation = newValue;
+		}
 		this.render();
 	}
 
-	
 	render() {
+		this.#styles.replaceSync(`
+			:host{
+				display: flex;
+			}
+			.divider {
+				display: flex;
+            	background: var(--divider-${this.#variant}-background);
+            	width: ${this.#orientation === 'horizontal' ? '100%' : `var(--divider-${this.#size}-width)`};
+            	height: ${this.#orientation === 'vertical' ? '100%' : `var(--divider-${this.#size}-width)`};
+			}
+		`);
 
-		const orientation = ["vertical", "xs", "sm"].includes(this.getAttribute("orientation")) || "horizontal";
-		this.shadowRoot.innerHTML = `<style>
-          .divider {
-            display: flex;
-            background: var(--divider-${this.#variant}-background);
-            width: ${orientation === 'horizontal' ? '100%' : `var(--divider-${this.#size}-width)`};
-            height: ${orientation === 'vertical' ? '100%' : `var(--divider-${this.#size}-width)`};
-          }
-        </style>
-        <div class="divider"></div>
-      `;
+		this.shadowRoot.adoptedStyleSheets = [this.#styles];
+		this.shadowRoot.innerHTML = `<div class="divider"><slot></slot></div>`;
 	}
 }
 

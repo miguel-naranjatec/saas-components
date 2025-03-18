@@ -1,5 +1,21 @@
 :root {
-    --breadcrumb-gap-default: var(--gap);
-    --breadcrumb-gap-sm: var(--gap-sm);
+
+    /* GAPS */
+
     --breadcrumb-gap-xs: var(--gap-xs);
+    --breadcrumb-gap-sm: var(--gap-sm);
+    --breadcrumb-gap-default: var(--gap);
+    --breadcrumb-gap-lg: var(--gap-lg);
+    --breadcrumb-gap-xl: var(--gap-xl);
+
+    /* VARIANTS */
+
+    --breadcrumb-default-font: var(--font-body-sm);
+    --breadcrumb-default-color: var(--color-surface-contrast);
+    --breadcrumb-hover-default-color: var(--color-primary);
+    --breadcrumb-separator-default-color: var(--color-surface-darker);
+    --breadcrumb-prefix-default-color: var(--color-primary);
+    --breadcrumb-current-default-color: var(--color-surface-darker-contrast);
+    --breadcrumb-current-default-font-weight: var(--font-body-weight-bolder);
+
 }

@@ -67,33 +67,29 @@
     --button-transparent-outline: none;
     --button-hover-transparent-outline: none;
 
-
     /* SIZES */
-
-    --button-default-padding: calc(var(--font-button-size) * 1);
-    --button-sm-padding: calc(var(--font-button-size-sm) * 1);
-    --button-lg-padding: calc(var(--font-button-size-lg) * 1.5);
     
-    --button-default-gap: calc(var(--font-button-size) * 1);
-    --button-sm-gap: calc(var(--font-button-size-sm) * 1);
-    --button-lg-gap: calc(var(--font-button-size-lg) * 1.5);
-
-    --button-default-letter-spacing: var(--font-button-letter-spacing);
-    --button-sm-letter-spacing: var(--font-button-letter-spacing-sm);
-    --button-lg-letter-spacing: var(--font-button-letter-spacing-lg);
-
-    --button-default-font: var(--font-button);
     --button-sm-font: var(--font-button-sm);
-    --button-lg-font: var(--font-button-lg);
-
-    --button-default-border-radius: calc(var(--font-button-size) * .2);
-    --button-sm-border-radius: calc(var(--font-button-size) * .2);
-    --button-lg-border-radius: calc(var(--font-button-size) * .2);
-
+    --button-sm-letter-spacing: var(--font-button-letter-spacing-sm);
+    --button-sm-padding: calc(var(--font-button-size-sm) * 1);
+    --button-sm-gap: calc(var(--font-button-size-sm) * 1);
     --button-sm-outline-width: 1px;
-    --button-sm-outline-offset: 0;
+    --button-sm-outline-offset: -1px;
+    --button-sm-border-radius: calc(var(--font-button-size-sm) * .2);
+    
+    --button-default-font: var(--font-button);
+    --button-default-letter-spacing: var(--font-button-letter-spacing);
+    --button-default-padding: calc(var(--font-button-size) * 1);
+    --button-default-gap: calc(var(--font-button-size) * 1);
     --button-default-outline-width: 1px;
-    --button-default-outline-offset: 0;
+    --button-default-outline-offset: -1px;
+    --button-default-border-radius: calc(var(--font-button-size) * .2);
+    
+    --button-lg-font: var(--font-button-lg);
+    --button-lg-letter-spacing: var(--font-button-letter-spacing-lg);
+    --button-lg-padding: calc(var(--font-button-size-lg) * 1.5);
+    --button-lg-gap: calc(var(--font-button-size-lg) * 1.5);
     --button-lg-outline-width: 1px;
-    --button-lg-outline-offset: 0;
+    --button-lg-outline-offset: -1px;
+    --button-lg-border-radius: calc(var(--font-button-size-lg) * .2);
 }

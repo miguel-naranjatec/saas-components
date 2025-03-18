@@ -1,7 +1,7 @@
 class UIContextMenu extends HTMLElement {
 
-
 	#version = "0.0.1";
+	#styles = new CSSStyleSheet();
 	#variants = ["default"];
 	#variant = "default";
 
@@ -14,16 +14,21 @@ class UIContextMenu extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ["target"];
+		return ["target", "variant"];
 	}
 
 	connectedCallback() {
 		document.addEventListener("click", this.handleOutsideClick);
+		this.handleScroll = () => { this.setAttribute("open", "false"); };
+		window.addEventListener('scroll', this.handleScroll);
+		window.addEventListener('resize', this.handleScroll);
 		this.setTargetListener();
 	}
 
 	disconnectedCallback() {
 		document.removeEventListener("click", this.handleOutsideClick);
+		window.removeEventListener('scroll', this.handleScroll);
+		window.removeEventListener('resize', this.handleScroll);
 		this.removeTargetListener();
 	}
 
@@ -32,14 +37,10 @@ class UIContextMenu extends HTMLElement {
 			this.removeTargetListener();
 			this.setTargetListener();
 		}
-
 		if (name == 'variant' && this.#variants.includes(newValue)) {
 			this.#variant = newValue;
 		}
-		
-
 		this.render();
-
 	}
 
 	setTargetListener() {
@@ -66,7 +67,7 @@ class UIContextMenu extends HTMLElement {
 
 	handleContextMenu(event) {
 		event.preventDefault();
-		this.showMenu(event.pageX, event.pageY);
+		this.showMenu(event.pageX - window.pageXOffset , event.pageY - window.pageYOffset);
 	}
 
 	showMenu(x, y) {
@@ -76,24 +77,32 @@ class UIContextMenu extends HTMLElement {
 	}
 
 	render() {
-		this.shadowRoot.innerHTML = `
-        <style>
-          :host {
-            position: fixed;
-            background: var(--context-menu-${this.#variant}-background);
-            border: var(--context-menu-${this.#variant}-border);
-			outline: var(--context-menu-${this.#variant}-outline);
-			outline-offset: var(--context-menu-${this.#variant}-outline-offset);
-            padding: 0;
-            display: none;
-            z-index: 1000;
-          }
-          :host([open="true"]) {
-            display: block;
-          }
-        </style>
-        <slot></slot>
-      `;
+
+		this.#styles.replaceSync(`
+			:host {
+				position: fixed;
+				top: 0;
+				left: 0;
+				font: var(--context-menu-${this.#variant}-font);
+				padding: var(--context-menu-${this.#variant}-padding);
+				background: var(--context-menu-${this.#variant}-background);
+				color: var(--context-menu-${this.#variant}-color);
+				border: var(--context-menu-${this.#variant}-border);
+				border-radius: var(--context-menu-${this.#variant}-border-radius);
+				outline: var(--context-menu-${this.#variant}-outline);
+				outline-offset: var(--context-menu-${this.#variant}-outline-offset);
+				display: none;
+				z-index: calc(var(--z-index-max) - 100);
+			}
+			:host([open="true"]) {
+				display: flex;
+				flex-direction: column;
+				gap: var(--context-menu-${this.#variant}-gap);
+			}
+		`);
+
+		this.shadowRoot.adoptedStyleSheets = [this.#styles];
+		this.shadowRoot.innerHTML = `<slot></slot>`;
 	}
 }
 

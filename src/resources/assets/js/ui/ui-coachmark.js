@@ -1,11 +1,10 @@
 class UiCoachmark extends HTMLElement {
-	//https://opensource.adobe.com/spectrum-web-components/components/coachmark/
-	
 
-	// TODO save position in cache?
+	// TODO save position in cache
 
 	#version = "0.0.2";
 	#styles = new CSSStyleSheet();
+	#image;
 	#variants = ['default'];
 	#variant = 'default';
 	#placements = [
@@ -46,7 +45,7 @@ class UiCoachmark extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ['variant', 'step', 'active', 'title', 'element', 'placement', 'language'];
+		return ['variant', 'step', 'active', 'title', 'element', 'placement', 'language', 'image'];
 	}
 
 	connectedCallback() {
@@ -89,6 +88,7 @@ class UiCoachmark extends HTMLElement {
 		if (items[0]){
 			this.removeAttribute('active');
 			items[0].setAttribute('active', 'true');
+			this.#displaceTo(items[0]);
 			this.dispatchEvent(new CustomEvent("change"));
 		}
 	}
@@ -104,10 +104,15 @@ class UiCoachmark extends HTMLElement {
 		if (items[0]){
 			this.removeAttribute('active');
 			items[0].setAttribute('active', 'true');
+			this.#displaceTo(items[0]);
 			this.dispatchEvent(new CustomEvent("change"));
 		}
 	}
 
+	#displaceTo(element) {
+		element.#element.scrollIntoView({ block: "center",  behavior: "smooth" });
+	}
+	
 	disconnectedCallback() {
 		window.removeEventListener('resize', this.handleResize);
 		window.removeEventListener('scroll', this.handleScroll);
@@ -135,6 +140,9 @@ class UiCoachmark extends HTMLElement {
 		if (name == 'active') {
 			this.#active = this.hasAttribute('active');
 		}
+		if (name == 'image') {
+			this.#image = newValue;
+		}
 		this.render();
 	}
 
@@ -145,34 +153,63 @@ class UiCoachmark extends HTMLElement {
 			return;
 		}
 
+		const title = (this.#title) ? `<ui-heading><h2>${this.#title}</h2></ui-heading>` : '';
+		const image = (this.#image) ? `<picture><img src='${this.#image}' loading='lazy' /></picture>` : ``;
+
 		this.#styles.replaceSync(`
 			:host{
 				position: fixed;
-				z-index: calc(var(--z-index-max) - 100 );
+				top: 0;
+				left: 0;
+				z-index: calc(var(--z-index-max) - 100);
 				display: inline-flex;
-				padding: var(--gap);
+				padding: var(--gap);	
 			}
             #coachmark{
                 display: inline-flex;
                 flex-direction: column;
-                gap: var(--gap);
-                border: 1px solid #000;
-                padding: var(--padding);
-				background: var(--color-surface-lighter);
+				width: var(--coachmark-${this.#variant}-width);
+				font: var(--coachmark-${this.#variant}-font);
+    
+				outline: var(--coachmark-${this.#variant}-outline);
+				outline-offset: var(--coachmark-${this.#variant}-outline-offset);
+                border: var(--coachmark-${this.#variant}-border);
+				background: var(--coachmark-${this.#variant}-background);
+				border-radius: var(--coachmark-${this.#variant}-border-radius);
+				overflow: hidden;
             }
+  			#coachmark > .content {
+			 	display: flex;
+				flex-direction: column;
+			  	gap: var(--coachmark-${this.#variant}-gap);
+			 	padding: var(--coachmark-${this.#variant}-padding);
+			}
+			#coachmark.step-0 [previous]{
+				display: none;
+			}
+			#coachmark > picture{
+				display: flex;
+				aspect-ratio: 16 / 9;
+			}
+			#coachmark > picture > img{
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
 		`);
 		this.shadowRoot.adoptedStyleSheets = [this.#styles];
-		const title = (this.#title) ? `${this.#title}` : '';
+		
 		this.shadowRoot.innerHTML = `
-        <div id='coachmark' ${(this.#element) ? 'has-element' : ''}  >
-            <slot name='media'></slot>
-            <div>${title}</div>
+        <div id='coachmark' class='step-${this.#step}' ${(this.#element) ? 'has-element' : ''}  >
+			${image}
+			<div class='content'>
+			${title}
             <slot></slot>
-            <ui-flex>
-				<ui-button previous >${this.#languages[this.#language].previous}</ui-button>
-				<ui-button next >${this.#languages[this.#language].next}</ui-button>
-				<ui-button skip >${this.#languages[this.#language].skip}</ui-button>
+            <ui-flex gap='xs' justify='space-between'>
+				<ui-button variant='subtle' previous >${this.#languages[this.#language].previous}</ui-button>
+				<ui-button variant='subtle' next >${this.#languages[this.#language].next}</ui-button>	
 			</ui-flex>
+			</div>
         </div>
         `;
 
@@ -181,8 +218,13 @@ class UiCoachmark extends HTMLElement {
 	}
 
 	#placementElement() {
+		if (!this.#element){
+			return;
+		}
+
 		const bounds_coachmark = this.getBoundingClientRect();
 		const bounds = this.#element.getBoundingClientRect();
+
 		let top, left;
 
 		if (this.#placement == 'top') {

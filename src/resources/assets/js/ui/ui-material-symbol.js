@@ -37,6 +37,9 @@ class UiMaterialSymbol extends HTMLElement {
 	
 		this.shadowRoot.innerHTML = `
         <style>
+			:host{
+				display: inline-flex;
+			}
 			.material-symbols-outlined {
 				font-family: 'Material Symbols Outlined';
 				font-weight: normal;

@@ -29,19 +29,19 @@ class UIFlex extends HTMLElement {
 		this.render();
 	}
 
+	
 	render() {
-		
 		const justify = this.getAttribute("justify") || "flex-start";
 		const align = this.getAttribute("align") || "stretch";
-		
 		this.shadowRoot.innerHTML = `
         <style>
           :host {
             display: flex;
             flex-direction: ${this.#direction};
             justify-content: ${justify};
+			flex-wrap: wrap;
             align-items: ${align};
-            gap: var(--flex-gap-${this.#gap});
+            gap: var(--gap-${this.#gap}, var(--gap));
           }
         </style>
         <slot></slot>

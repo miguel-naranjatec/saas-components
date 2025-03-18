@@ -1,9 +1,16 @@
 :root {
 
-    --tooltip-variant-default-background: var(--color-surface-inverse);
-    --tooltip-variant-default-color: var(--color-surface-inverse-contrast);
-    --tooltip-variant-default-padding: var(--padding-sm);
-    --tooltip-variant-default-border-radius: var(--border-radius-sm);
+    --tooltip-default-background: var(--color-surface-inverse);
+    --tooltip-default-color: var(--color-surface-inverse-contrast);
+    --tooltip-default-padding: var(--padding-sm);
+    --tooltip-default-border-radius: var(--border-radius-sm);
+
+
+
+    --tooltip-default-font: var(--font-label);
+    --tooltip-default-text-transform: var(--font-label-text-transform);
+    --tooltip-default-letter-spacing: var(--font-label-letter-spacing);
+ 
     
 
 }

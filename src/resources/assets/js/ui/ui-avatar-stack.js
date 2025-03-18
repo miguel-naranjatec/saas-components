@@ -1,5 +1,9 @@
 class UiAvatarStack extends HTMLElement {
-	#version = "0.0.1";
+
+	#version = "0.0.2";
+	#styles = new CSSStyleSheet();
+	#gaps = ["xs", "sm", "default", "lg", "xl"];
+	#gap = "default";
 
 	constructor() {
 		super();
@@ -11,63 +15,34 @@ class UiAvatarStack extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ["variant", "size", "name"];
+		return ["gap"];
 	}
+	
 	attributeChangedCallback(name, oldValue, newValue) {
-
-		
+		if (name == 'gap' && this.#gaps.includes(newValue)) {
+			this.#gap = newValue;
+		}
 		this.render();
 	}
 
-
+	#getGap() {
+		return (this.#gap == 'default') ? `` : `-${this.#gap}`;
+	}
+	
 	render() {
-		this.shadowRoot.innerHTML = `
-        <style>
-
-		:host {
-			display: inline-flex;
-		}
-
-		::slotted(*:nth-last-child(n)) {		
-			display: none;
-		}
-
-		::slotted(*:nth-last-child(-n + 5)) {
-			display: inline-flex;
-			filter: brightness(.6);
-		}
-
-		::slotted(*:nth-last-child(-n + 4)) {
-			display: inline-flex;
-			transform: translateX(-50%);
-			filter: brightness(.7);
-		}
-
-		::slotted(*:nth-last-child(-n + 3)) {
-			display: inline-flex;
-			transform: translateX(-100%);
-			filter: brightness(.8);
-		}
-
-		::slotted(*:nth-last-child(-n + 2)) {
-			display: inline-flex;
-			transform: translateX(-150%);
-			filter: brightness(.9);
-		}
-
-		::slotted(*:nth-last-child(-n + 1)) {
-			display: inline-flex;
-			transform: translateX(-200%);
-			filter: brightness(1);
-		}
-
-
-
-
-
-        </style>
-		<slot></slot>
-      `;
+		this.#styles.replaceSync(`
+			:host {
+				display: inline-flex;
+			}
+			::slotted(*) {
+				margin-left: calc(0px - var(--gap${ this.#getGap() }));
+			}
+			::slotted(*:nth-child(1)) {
+				margin-left: 0;
+			}
+		`);
+		this.shadowRoot.adoptedStyleSheets = [this.#styles];
+		this.shadowRoot.innerHTML = `<slot></slot>`;
 	}
 }
 customElements.define("ui-avatar-stack", UiAvatarStack);
