@@ -8,7 +8,7 @@ class UiExpandable extends HTMLElement {
 	#expandable_element;
 	#holder_element;
 	#trigger_element;
-	#open;
+	#open = false;
 	#variants = ["default"];
 	#variant = "default";
 
@@ -17,11 +17,10 @@ class UiExpandable extends HTMLElement {
 
 	#languages = {
 		"en": {
-			expand : 'Expand',
-			
+			expand : 'Expand'		
 		},
 		"es": {
-			expand: 'Expandir',
+			expand: 'Expandir'
 		}
 	}
 	#language = "en";
@@ -36,21 +35,22 @@ class UiExpandable extends HTMLElement {
 	
 	connectedCallback() {
 		this.render();
+		this.handleClick = (e) => {
+			if (e.target.matches('#trigger')) {
+				this.#expandable_element.setAttribute('open', 'true');
+				this.#open = true;
+				window.dispatchEvent(new Event('resize'));
+			}
+		};
+
+		this.shadowRoot.addEventListener('click', this.handleClick);
 		this.handleResize = () => {
 			if (!this.#open){ this.#updateSizes(); }
 		};
 		window.addEventListener('resize', this.handleResize);
 		window.addEventListener('scroll', this.handleResize);
-		this.handleResize();		
+		this.handleResize();	
 
-		this.handleClick = (e) => {
-			if (e.target.matches('#trigger')) {
-				this.#expandable_element.setAttribute('open', 'true');
-				this.#open = true;
-			}
-		};
-
-		this.shadowRoot.addEventListener('click', this.handleClick);
 	}
 	
 	static get observedAttributes() {

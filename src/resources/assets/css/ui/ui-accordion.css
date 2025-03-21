@@ -1,0 +1,29 @@
+
+:root {
+
+    /* VARIANTS */
+
+    --accordion-default-background: var(--color-surface-light);
+    --accordion-default-border-radius: var(--border-radius);
+    --accordion-default-padding: var(--padding-lg);
+    --accordion-default-gap: var(--gap-lg);
+
+
+    --accordion-title-default-font: var(--font-title-sm);
+    --accordion-title-default-text-transform: var(--font-title-text-transform);
+    --accordion-title-default-letter-spacing: var(--font-title-letter-spacing);
+    --accordion-title-default-background: none;
+    --accordion-title-default-color: var(--color-surface-color);
+    --accordion-title-default-border-radius: none;
+    --accordion-title-default-padding: 0;
+    --accordion-title-default-gap: var(--gap);
+
+    --accordion-content-default-padding: 0;
+
+
+
+
+
+
+    
+}

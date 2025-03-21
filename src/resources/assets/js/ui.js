@@ -2,6 +2,8 @@
 
 
 import "./ui/custom-select";
+import "./ui/ui-accordion-item";
+import "./ui/ui-accordion";
 import "./ui/ui-alert";
 import "./ui/ui-app-bar";
 import "./ui/ui-app-content";

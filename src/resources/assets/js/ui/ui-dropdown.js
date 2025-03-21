@@ -57,6 +57,14 @@ class UIDropdown extends HTMLElement {
 		this.#elementTrigger.addEventListener('click', () => {
 			this.toggleDropdown();
 		});
+		/*
+		this.#elementTrigger.addEventListener('contextmenu', (e) => {
+			this.toggleDropdown();
+			e.preventDefault();
+		});
+		*/
+
+
 	}
 
 	connectedCallback() {
@@ -69,8 +77,7 @@ class UIDropdown extends HTMLElement {
 		this.#styles.replaceSync(`
 			:host {
 				position: relative;
-			}
-				
+			}	
 			[dropdown] {
 				position: absolute;
 				display:none;
