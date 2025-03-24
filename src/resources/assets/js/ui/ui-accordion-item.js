@@ -18,7 +18,6 @@ class UiAccordionItem extends HTMLElement {
 				this.toggleAttribute('open');
 			}
 		});
-
 	}
 
     static get observedAttributes() {
@@ -31,7 +30,6 @@ class UiAccordionItem extends HTMLElement {
 	}
 
     attributeChangedCallback(name, oldValue, newValue) {
-   
 		if (name == 'variant' && this.#variants.includes(newValue)) {
 			this.#variant = newValue;
 		}
@@ -40,6 +38,7 @@ class UiAccordionItem extends HTMLElement {
 		}
 		if (name == 'open') {
 			this.#open = this.hasAttribute('open');
+			this.#open ? this.dispatchEvent(new CustomEvent("open")) : this.dispatchEvent(new CustomEvent("close"));
 		}
 		this.render();
 	}
@@ -55,8 +54,8 @@ class UiAccordionItem extends HTMLElement {
 				border-radius: var(--accordion-${this.#variant}-border-radius);
 				padding: var(--accordion-${this.#variant}-padding);
                 gap: var(--accordion-${this.#variant}-gap);
-
 			}
+
 			#title{
 				display: flex;
 				align-items: center;
@@ -73,11 +72,7 @@ class UiAccordionItem extends HTMLElement {
   				text-overflow: ellipsis;
 				cursor: pointer;
 			}
-
-			#title:is(:focus){
-				border: 2px solid pink;
-			}
-
+				
 			#content{
 				display: ${ this.#open ? 'flex' : 'none' };
 				padding: var(--accordion-content-${this.#variant}-padding);
@@ -93,7 +88,7 @@ class UiAccordionItem extends HTMLElement {
             <div id='content'>
                 <slot></slot>
             </div>
-            `;
+			`;
 	}
 
 }

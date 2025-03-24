@@ -1,0 +1,17 @@
+:root {
+
+    /* VARIANTS */
+
+    --dialog-default-border: none;
+    --dialog-default-border-radius: var(--border-radius);
+
+
+    /* SIZES */
+
+    --dialog-sm-width: 400px;
+    --dialog-default-width: 600px;
+    --dialog-lg-width: 1000px;
+
+
+
+}

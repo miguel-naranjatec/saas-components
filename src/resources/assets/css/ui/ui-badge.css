@@ -36,6 +36,15 @@
     --badge-success-color: var(--color-success-contrast);
     --badge-success-outline: none;
 
+    --badge-subtle-background: var(--color-surface-light);
+    --badge-subtle-color: var(--color-surface-light-contrast);
+    --badge-subtle-outline: none;
+
+    --badge-transparent-background: transparent;
+    --badge-transparent-color: var(--color-surface-contrast);
+    --badge-transparent-outline: none;
+
+
     
     /* SIZES */
     

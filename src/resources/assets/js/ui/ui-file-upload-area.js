@@ -1,4 +1,4 @@
-class UIFileUpload extends HTMLElement {
+class UiFileUploadArea extends HTMLElement {
 
 	#version = "0.0.1";
 	#styles = new CSSStyleSheet();
@@ -39,10 +39,11 @@ class UIFileUpload extends HTMLElement {
 
 
 	render() {
-
 		this.#styles.replaceSync(`
 			:host {
-            	display: block;
+            	display: flex;
+				width: 100%;
+				
             	border: 2px dashed #ccc;
             	padding: 16px;
             	text-align: center;
@@ -50,6 +51,7 @@ class UIFileUpload extends HTMLElement {
             	font-family: Arial, sans-serif;
             	border-radius: 8px;
             	transition: border 0.3s ease;
+				
           	}
           	:host(:hover) {
             	border-color: #888;
@@ -67,7 +69,7 @@ class UIFileUpload extends HTMLElement {
           <span class="label">Click o arrastra un archivo aquí</span>
           <input type="file" id="file-input">
         </div>
-      	`;
+		`;
 
 		this.fileInput = this.shadowRoot.querySelector("#file-input");
 		this.uploadArea = this.shadowRoot.querySelector(".upload-area");
@@ -99,4 +101,4 @@ class UIFileUpload extends HTMLElement {
 	}
 }
 
-customElements.define("ui-file-upload", UIFileUpload);
+customElements.define("ui-file-upload-area", UiFileUploadArea);
