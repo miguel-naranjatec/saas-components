@@ -15,6 +15,7 @@ import "./ui/ui-breadcrumb";
 import "./ui/ui-button-group";
 import "./ui/ui-button";
 import "./ui/ui-card";
+import "./ui/ui-checkbox";
 import "./ui/ui-coachmark";
 import "./ui/ui-code";
 import "./ui/ui-command";

@@ -69,8 +69,6 @@ class UiCommand extends HTMLElement {
 	}
 
 	render() {
-
-
 		this.#styles.replaceSync(`
 			:host {
                 display: inline-flex;
@@ -81,18 +79,12 @@ class UiCommand extends HTMLElement {
 				gap: var(--gap-xs);
 			}
 		`);
-
 		this.shadowRoot.adoptedStyleSheets = [this.#styles];
-
 		this.shadowRoot.innerHTML = `
         <div id='keys'>
 			${this.#command}
         </div>
         `;
-
-		this.update();
-
-
 	}
 }
 customElements.define("ui-command", UiCommand);

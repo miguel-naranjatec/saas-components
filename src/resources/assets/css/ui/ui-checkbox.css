@@ -1,0 +1,43 @@
+:root {
+
+
+    /* VARIANTS */
+
+    --checkbox-default-background: var(--color-surface-lighter);
+    --checkbox-default-border: none;
+    --checkbox-default-border-radius: var(--border-radius-sm);
+    --checkbox-default-outline: 0px solid var(--color-surface-darker);
+    
+    --checkbox-default-checked-background: var(--color-success);
+    --checkbox-default-checked-border: none;
+    --checkbox-default-checked-border-radius: var(--border-radius-sm);
+    --checkbox-default-checked-outline: 0px solid var(--color-success-dark);
+
+    /* SIZES */
+
+    --checkbox-xs-height: 12px;
+    --checkbox-xs-outline-width: 1px;
+    --checkbox-xs-outline-offset: -1px;
+    --checkbox-xs-padding: 3px;
+   
+    --checkbox-sm-height: 16px;
+    --checkbox-sm-outline-width: 1px;
+    --checkbox-sm-outline-offset: -1px;
+    --checkbox-sm-padding: 3px;
+   
+    --checkbox-default-height: 20px;
+    --checkbox-default-outline-width: 1px;
+    --checkbox-default-outline-offset: -1px;
+    --checkbox-default-padding: 4px;
+    
+    --checkbox-lg-height: 28px;
+    --checkbox-lg-outline-width: 1px;
+    --checkbox-lg-outline-offset: -1px;
+    --checkbox-lg-padding: 4px;
+    
+    --checkbox-xl-height: 32px;
+    --checkbox-xl-outline-width: 1px;
+    --checkbox-xl-outline-offset: -1px;
+    --checkbox-xl-padding: 5px;
+
+}
