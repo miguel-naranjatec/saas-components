@@ -6,10 +6,11 @@ class UiInput extends HTMLElement {
 	#styles = new CSSStyleSheet();
 	#variants = ['default'];
 	#variant = 'default';
-	#sizes = ['xs', 'sm', 'default', 'lg', 'xl'];
+	#sizes = ['sm', 'default', 'lg'];
 	#size = 'default';
 	#types = ['text', 'password', 'date', 'datetime', 'email', 'number', 'tel', 'time', 'url', 'week'];
 	#type = 'text';
+	#inline = false;
 	#name;
 	#required;
 	#disabled;
@@ -49,13 +50,13 @@ class UiInput extends HTMLElement {
 			'maxlength',
 			'minlength',
 			'input-prefix',
-			'input-sufix'
+			'input-sufix',
+			'inline'
 		];
 	}
 	
 	connectedCallback() {
 		this.render();
-
 		this.addEventListener('focus', (e) => {
 			this.shadowRoot.querySelector('#input').classList.add('focus');
 		});
@@ -102,14 +103,18 @@ class UiInput extends HTMLElement {
 		if (name == 'input-sufix') {
 			this.#inputSufix = newValue;
 		}
+
+		if (name == 'inline') {
+			this.#inline = this.hasAttribute('inline');
+		}
+
 		this.render();
 	}
-
 	
 	render() {
 		this.#styles.replaceSync(`
 			:host{	
-				display: flex;
+				display: ${ (this.#inline) ? 'inline-flex' : 'flex' };
 				width: 100%;
 				align-items: center;
 				gap: var(--gap-sm);
@@ -121,27 +126,45 @@ class UiInput extends HTMLElement {
 				flex-direction: column;
 				gap: var(--gap-xs);
 			}
+
 			#input {
 				display: flex;
 				align-items: stretch;
 				width: 100%;
-				border: 1px solid pink;
-				border-radius: var(--border-radius);
+				background: var(--input-${this.#variant}-background);
+				color: var(--input-${this.#variant}-color);
+				border: var(--input-${this.#variant}-border);
+				outline: var(--input-${this.#variant}-outline);
+				outline-offset: var(--input-${this.#variant}-outline-offset);
+				outline-width: var(--input-${this.#size}-outline-width);
+				border-radius: var(--input-${this.#size}-border-radius);
 				overflow: hidden;
 			}
-			#input.focus{
-				border: 1px solid blue;
-			}
+
 			#input > label{
 				display: flex;
 				align-items: center;
-				justify-content: center;
-				padding: 0 var(--input-${this.#size}-padding);
+				padding: var(--input-${this.#size}-padding);
+			}
+
+			#input.focus{
+				background: var(--input-${this.#variant}-focus-background);
+				color: var(--input-${this.#variant}-focus-color);
+				border: var(--input-${this.#variant}-focus-border);
+				outline: var(--input-${this.#variant}-focus-outline);
+				outline-width: var(--input-${this.#size}-outline-width);
+			}
+
+			#holder > label{
+				display: flex;
 				white-space: nowrap;
+				font: var(--font-label);
+				text-transform: var(--font-label-text-transform);
 			}
 
 			#input > input {
 				width: 100%;
+				font: var(--input-${this.#size}-font);
 				padding: var(--input-${this.#size}-padding);
 				background: transparent;
 				border: none;
@@ -149,7 +172,10 @@ class UiInput extends HTMLElement {
 				position: relative;
 				z-index: 2;
 				flex-grow: 1;
-			}	
+			}
+			#input > input::placeholder {
+				color: var(--input-${this.#variant}-placeholder-color);
+			}
 		`);
 		this.shadowRoot.adoptedStyleSheets = [this.#styles, reset];
 

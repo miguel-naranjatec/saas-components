@@ -1,14 +1,17 @@
-class UISwitch extends HTMLElement {
+class UiRadio extends HTMLElement {
 
-	#version = "0.0.2";
+	// TODO implement functionality
+
+	#version = "0.0.1";
 	#styles = new CSSStyleSheet();
 	#variants = ["default"];
 	#variant = 'default';
-	#sizes = ["xs", "sm", "default", "lg", "xl"];
+	#sizes = ["sm", "default", "lg"];
 	#size = 'default';
 	#checked = false;
 	#disabled = false;
 	#name;
+	#value;
 
 	constructor() {
 		super();
@@ -20,7 +23,7 @@ class UISwitch extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ["checked", "disabled", "variant", "size", "name"];
+		return ["checked", "disabled", "variant", "size", "name", "value"];
 	}
 
 	connectedCallback() {
@@ -59,16 +62,23 @@ class UISwitch extends HTMLElement {
 		if (name === "name") {
 			this.#name = newValue;
 		}
-
+		if (name === "value") {
+			this.#value = newValue;
+		}
 		this.render();
 	}
 
 	render() {
 		this.#styles.replaceSync(`
+            :host {
+                display: inline-flex;
+                user-select: none;
+            }
 			#label {
-			display: flex;
-			align-items: center;
-			gap: var(--gap);
+			    display: flex;
+			    align-items: center;
+			    gap: var(--gap);
+                cursor: pointer;
 			}
 			#checkbox{
 				clip: rect(0 0 0 0); 
@@ -80,51 +90,58 @@ class UISwitch extends HTMLElement {
 				width: 1px;
 			}
 			.switch {
-		  		aspect-ratio:  var(--switch-aspect-ratio);
-            	height: var(--switch-${this.#size}-height);	
-            	border-radius:  var(--switch-${this.#size}-border-radius);
-            	background: var(--switch-${this.#variant}-background);
+		  		aspect-ratio: 1;
+            	height: var(--checkbox-${this.#size}-height);	
+            	background: var(--checkbox-${this.#variant}-background);
+                border: var(--checkbox-${this.#variant}-border);
+            	border-radius: var(--checkbox-${this.#size}-height);
+                outline: var(--checkbox-${this.#variant}-outline);
+                outline-width:var(--checkbox-${this.#size}-outline-width);
+                outline-offset:var(--checkbox-${this.#size}-outline-offset);
             	display: inline-flex;
             	align-items: center;
             	transition: background-color 0.3s ease;
 				position: relative;
 				transition: all var(--transition-fast-duration) var(--ease-in-out);
-				cursor: pointer;
+				
           	}
 			.handle {
 				position: absolute;
+                inset: var(--checkbox-${this.#size}-padding);
 				aspect-ratio: 1;
-            	height: calc(var(--switch-${this.#size}-height) - var(--switch-${this.#size}-padding) * 2);
-            	background-color: var(--switch-handle-${this.#variant}-background);
-            	border-radius: 50%;
+                opacity: 0;
             	transition: all var(--transition-fast-duration) var(--ease-in-out);
-				left: var(--switch-${this.#size}-padding);
           	}
 			#checkbox:checked + .switch {
-				background: var(--switch-checked-${this.#variant}-background);
+				background: var(--checkbox-${this.#variant}-checked-background);
+                border: var(--checkbox-${this.#variant}-checked-border);
+                outline: var(--checkbox-${this.#variant}-checked-outline);
+                outline-width:var(--checkbox-${this.#size}-outline-width);
+                outline-offset:var(--checkbox-${this.#size}-outline-offset);
+
 			}
-			#checkbox:checked + .switch > .handle {
-				background: var(--switch-checked-handle-${this.#variant}-background);
-				transform: translateX(calc(var(--switch-${this.#size}-height) * var(--switch-aspect-ratio) - var(--switch-${this.#size}-height) ) );
-			}
-			#checkbox:focus + .switch > .handle{
-				outline: var(--switch-focus-handle-${this.#variant}-outline);
-			}
+			#checkbox:checked + .switch > .handle{
+                opacity: 1;
+                background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 800 800'%3E%3Cpolygon points='717.9 115.8 296.3 537.4 82.1 323.2 8.7 396.5 222.9 610.8 289.8 677.6 296.3 684.2 791.3 189.2 717.9 115.8' style='fill: %23FFFFFF;'/%3E%3C/svg%3E");
+            }
+            #info {
+                font: var(--font-body-sm);
+            }
 		`)
 
 		this.shadowRoot.adoptedStyleSheets = [this.#styles];
 		let disabled = (this.#disabled) ? "disabled" : "";
 		let checked = (this.#checked) ? "checked" : "";
 		this.shadowRoot.innerHTML = `<label id='label'>
-			<input name=${this.#name}  ${disabled} ${checked} id='checkbox' type='checkbox' />
+			<input name=${this.#name}  ${disabled} ${checked} id='checkbox' type='radio' />
 			<div class="switch" role="switch" aria-checked="${this.#checked}">
 				<div class="handle"></div>
 			</div>
-			<div class='info'>
+			<div id='info'>
 				<slot><slot>
 			</div>
 		</label>`;
 	}
 }
 
-customElements.define("ui-switch", UISwitch);
+customElements.define("ui-radio", UiRadio);

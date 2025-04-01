@@ -1,14 +1,32 @@
 :root{
 
-    --input-xs-padding: 6px;
-    --input-sm-padding: 8px;
-    --input-default-padding: 12px;
-    --input-lg-padding: 18px;
-    --input-xl-padding: 24px;
+    /* VARIANTS */
 
+    --input-default-background: var(--color-surface-lighter);
+    --input-default-color: var(--color-surface-lighter-contrast);
+    --input-default-placeholder-color: var(--color-surface-darker);
+    --input-default-border: none;
+    --input-default-outline: 0 solid var(--color-surface-darker);
+    --input-default-outline-offset: -1px;
+    --input-default-focus-background: var(--color-surface-lighter);
+    --input-default-focus-outline: 0 solid var(--color-primary);
+    --input-default-focus-outline-offset: -1px;
 
+    /* SIZES */
+    
+    --input-sm-padding: 12px;
+    --input-sm-font: var(--font-body-sm);
+    --input-sm-border-radius: var(--border-radius-sm);
+    --input-sm-outline-width: 1px;
 
+    --input-default-padding: 16px;
+    --input-default-font: var(--font-body);
+    --input-default-border-radius: var(--border-radius);
+    --input-default-outline-width: 2px;
 
-
+    --input-lg-padding: 24px;
+    --input-lg-font: var(--font-body-lg);
+    --input-lg-border-radius: var(--border-radius);
+    --input-lg-outline-width: 2px;
 
 }
